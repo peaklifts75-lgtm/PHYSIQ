@@ -13,8 +13,7 @@ app.use(function(req, res, next) {
 
 app.use(require('express').json({ limit: '20mb' }));
 
-const KEY = 'sk-ant-api03-nMJ...-wAA';
-
+const KEY = process.env.ANTHROPIC_API_KEY;
 app.post('/api/analyze', function(req, res) {
   const body = JSON.stringify(req.body);
   const r = https.request({
