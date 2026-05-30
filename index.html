@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHYSIQ — Build Your Aesthetic</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============================================
+     NAV
+     ============================================ -->
+<nav>
+  <div class="logo">PHYSI<span>Q</span></div>
+  <ul>
+    <li><a href="index.html">Build</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="login.html" class="nav-cta">Get Your Plan</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Built for lifters. Chase greatness.</div>
+    <h1>
+      Train for<br>
+      <em>Your</em><br>
+      <strong>Aesthetic.</strong>
+    </h1>
+    <p class="hero-sub">
+      Stop following generic programs built for someone else. Get a plan personalized
+      to your body, your schedule, and the physique you actually want.
+    </p>
+    <div class="hero-actions">
+      <a href="#build" class="btn-primary">Build My Program</a>
+      <a href="#" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-panel"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-center-text">PHYSIQ</div>
+    <div class="hero-badge">
+      <span class="hero-badge-text">SIGN<br>·<br>UP<br>·<br>NOW</span>
+    </div>
+    <div class="hero-stat-block">
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Personalized</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">FREE</span>
+        <span class="stat-label">Always</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">12W</span>
+        <span class="stat-label">Programs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     MARQUEE TICKER
+     ============================================ -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item">AESTHETIC LIFTING</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">PERSONALIZED PLANS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">BUILT FOR LIFTERS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">TRAIN WITH PURPOSE</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">NO FLUFF</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">REAL RESULTS</span><span class="marquee-dot">◆</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item">AESTHETIC LIFTING</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">PERSONALIZED PLANS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">BUILT FOR LIFTERS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">TRAIN WITH PURPOSE</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">NO FLUFF</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">REAL RESULTS</span><span class="marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- ============================================
+     PROGRAM FORM SECTION
+     ============================================ -->
+<section class="form-section" id="build">
+
+  <!-- Left: intro copy -->
+  <div class="form-intro reveal">
+    <div class="section-tag">Your Program</div>
+    <h2>Built around <em>you.</em> Not a template.</h2>
+    <p>
+      Answer a few questions and get a 12-week lifting program written specifically
+      for your body, your equipment, and the aesthetic you're building toward.
+      No generic plans. No bro-science.
+    </p>
+    <div class="trust-items">
+      <div class="trust-item">
+        <div class="trust-icon">✦</div>
+        Takes 90 seconds to fill out
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✦</div>
+        Programs focused on aesthetic development
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✦</div>
+        Built for anyone serious about their physique
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✦</div>
+        Completely free — no email required
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: the form card -->
+  <div class="reveal">
+    <div class="program-form" id="programForm">
+
+      <div class="form-header">
+        <h3>Build Your Program</h3>
+        <p>Your answers shape everything. Be honest — this is for you.</p>
+      </div>
+
+      <!-- Progress dots -->
+      <div class="step-indicator" id="stepIndicator">
+        <div class="step-dot active" id="dot0"></div>
+        <div class="step-dot" id="dot1"></div>
+        <div class="step-dot" id="dot2"></div>
+        <div class="step-dot" id="dot3"></div>
+      </div>
+
+      <!-- ---- STEP 1: Basic Info ---- -->
+      <div class="form-step active" id="step0">
+        <div class="field-row">
+          <div class="field-group">
+            <label>Your Name</label>
+            <input type="text" id="userName" placeholder="First name">
+          </div>
+          <div class="field-group">
+            <label>Age</label>
+            <input type="number" id="userAge" placeholder="e.g. 17" min="13" max="99">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Height</label>
+            <input type="text" id="userHeight" placeholder='e.g. 5&apos;10"'>
+          </div>
+          <div class="field-group">
+            <label>Weight (lbs)</label>
+            <input type="number" id="userWeight" placeholder="150">
+          </div>
+        </div>
+        <div class="field-group">
+          <label>How long have you been lifting?</label>
+          <div class="option-grid">
+            <label class="option-card" onclick="selectOption(this, 'experience')">
+              <input type="radio" name="experience" value="never">
+              <span class="option-emoji">🔰</span>
+              <span class="option-label">Never started</span>
+              <span class="option-sub">Complete beginner</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'experience')">
+              <input type="radio" name="experience" value="under6">
+              <span class="option-emoji">📈</span>
+              <span class="option-label">Under 6 months</span>
+              <span class="option-sub">Just getting started</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'experience')">
+              <input type="radio" name="experience" value="6to18">
+              <span class="option-emoji">💪</span>
+              <span class="option-label">6–18 months</span>
+              <span class="option-sub">Some foundation</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'experience')">
+              <input type="radio" name="experience" value="over18">
+              <span class="option-emoji">🏆</span>
+              <span class="option-label">1.5+ years</span>
+              <span class="option-sub">Intermediate</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-nav">
+          <span></span>
+          <span class="step-counter">01 / 04</span>
+          <button class="btn-next" onclick="nextStep(0)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ---- STEP 2: Goals ---- -->
+      <div class="form-step" id="step1">
+        <div class="field-group">
+          <label>What's your main goal?</label>
+          <div class="option-grid">
+            <label class="option-card" onclick="selectOption(this, 'goal')">
+              <input type="radio" name="goal" value="bulk">
+              <span class="option-emoji">📦</span>
+              <span class="option-label">Build Size</span>
+              <span class="option-sub">Add muscle mass</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'goal')">
+              <input type="radio" name="goal" value="cut">
+              <span class="option-emoji">🔥</span>
+              <span class="option-label">Get Lean</span>
+              <span class="option-sub">Burn fat, stay strong</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'goal')">
+              <input type="radio" name="goal" value="aesthetic">
+              <span class="option-emoji">🗿</span>
+              <span class="option-label">Aesthetic Physique</span>
+              <span class="option-sub">V-taper, proportion</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'goal')">
+              <input type="radio" name="goal" value="strength">
+              <span class="option-emoji">⚡</span>
+              <span class="option-label">Raw Strength</span>
+              <span class="option-sub">Get seriously strong</span>
+            </label>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Body type right now?</label>
+          <div class="option-grid">
+            <label class="option-card" onclick="selectOption(this, 'bodytype')">
+              <input type="radio" name="bodytype" value="skinny">
+              <span class="option-emoji">🦴</span>
+              <span class="option-label">Skinny</span>
+              <span class="option-sub">Hard to gain weight</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'bodytype')">
+              <input type="radio" name="bodytype" value="average">
+              <span class="option-emoji">⚖️</span>
+              <span class="option-label">Average</span>
+              <span class="option-sub">Somewhere in between</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'bodytype')">
+              <input type="radio" name="bodytype" value="stocky">
+              <span class="option-emoji">🪨</span>
+              <span class="option-label">Stocky / Chubby</span>
+              <span class="option-sub">More to lose</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'bodytype')">
+              <input type="radio" name="bodytype" value="athletic">
+              <span class="option-emoji">🏃</span>
+              <span class="option-label">Already Athletic</span>
+              <span class="option-sub">Active background</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevStep(1)">← Back</button>
+          <span class="step-counter">02 / 04</span>
+          <button class="btn-next" onclick="nextStep(1)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ---- STEP 3: Schedule & Equipment ---- -->
+      <div class="form-step" id="step2">
+        <div class="field-group">
+          <label>Days per week you can train</label>
+          <div class="option-grid">
+            <label class="option-card" onclick="selectOption(this, 'days')">
+              <input type="radio" name="days" value="3">
+              <span class="option-emoji">📅</span>
+              <span class="option-label">3 Days</span>
+              <span class="option-sub">Busy schedule</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'days')">
+              <input type="radio" name="days" value="4">
+              <span class="option-emoji">📅</span>
+              <span class="option-label">4 Days</span>
+              <span class="option-sub">Good balance</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'days')">
+              <input type="radio" name="days" value="5">
+              <span class="option-emoji">📅</span>
+              <span class="option-label">5 Days</span>
+              <span class="option-sub">Committed</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'days')">
+              <input type="radio" name="days" value="6">
+              <span class="option-emoji">📅</span>
+              <span class="option-label">6 Days</span>
+              <span class="option-sub">All in</span>
+            </label>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Equipment access</label>
+          <div class="option-grid">
+            <label class="option-card" onclick="selectOption(this, 'equipment')">
+              <input type="radio" name="equipment" value="full">
+              <span class="option-emoji">🏋️</span>
+              <span class="option-label">Full Gym</span>
+              <span class="option-sub">All machines & free weights</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'equipment')">
+              <input type="radio" name="equipment" value="basic">
+              <span class="option-emoji">🔩</span>
+              <span class="option-label">Basic Gym</span>
+              <span class="option-sub">Barbells & dumbbells</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'equipment')">
+              <input type="radio" name="equipment" value="home">
+              <span class="option-emoji">🏠</span>
+              <span class="option-label">Home Setup</span>
+              <span class="option-sub">Dumbbells / bench</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'equipment')">
+              <input type="radio" name="equipment" value="none">
+              <span class="option-emoji">🤸</span>
+              <span class="option-label">No Equipment</span>
+              <span class="option-sub">Bodyweight only</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevStep(2)">← Back</button>
+          <span class="step-counter">03 / 04</span>
+          <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ---- STEP 4: Focus & Notes ---- -->
+      <div class="form-step" id="step3">
+        <div class="field-group">
+          <label>Weak points you want to prioritize</label>
+          <div class="option-grid">
+            <label class="option-card" onclick="selectOption(this, 'focus')">
+              <input type="radio" name="focus" value="chest_shoulders">
+              <span class="option-emoji">🫁</span>
+              <span class="option-label">Chest & Shoulders</span>
+              <span class="option-sub">Upper body width</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'focus')">
+              <input type="radio" name="focus" value="back">
+              <span class="option-emoji">🔼</span>
+              <span class="option-label">Back & Lats</span>
+              <span class="option-sub">V-taper, thickness</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'focus')">
+              <input type="radio" name="focus" value="arms">
+              <span class="option-emoji">💪</span>
+              <span class="option-label">Arms</span>
+              <span class="option-sub">Biceps & triceps</span>
+            </label>
+            <label class="option-card" onclick="selectOption(this, 'focus')">
+              <input type="radio" name="focus" value="legs">
+              <span class="option-emoji">🦵</span>
+              <span class="option-label">Legs</span>
+              <span class="option-sub">Quads, glutes, hamstrings</span>
+            </label>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Anything else we should know? (optional)</label>
+          <textarea id="userNotes"
+            placeholder="e.g. I have a bad shoulder, I play basketball, I can only train after school..."
+            rows="3"
+            style="resize:none;"></textarea>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="prevStep(3)">← Back</button>
+          <span class="step-counter">04 / 04</span>
+          <button class="btn-next" onclick="generateProgram()" id="generateBtn">
+            Generate My Program →
+          </button>
+        </div>
+      </div>
+
+      <!-- ---- LOADING ---- -->
+      <div class="program-loading" id="loadingPanel">
+        <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">
+          Building your program
+        </div>
+        <div class="loading-bar">
+          <div class="loading-fill" id="loadingFill"></div>
+        </div>
+        <div class="loading-text" id="loadingText">Analyzing your stats...</div>
+      </div>
+
+      <!-- ---- RESULT ---- -->
+      <div class="result-panel" id="resultPanel">
+        <div class="result-header">
+          <div class="result-name" id="resultName">Your Personalized Plan</div>
+          <div class="result-title" id="resultTitle">12-Week Aesthetic Program</div>
+        </div>
+        <div class="result-body">
+          <div class="program-output" id="programOutput"></div>
+          <div class="cta-strip">
+            <p>Want your nutrition plan, progressive overload tracker, and weekly check-ins?</p>
+            <button
+              class="btn-next"
+              style="margin:0 auto;display:block;"
+              onclick="alert('Coming soon — drop your email and be first to know when Pro launches.')">
+              Unlock Full Program — Free
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end .program-form -->
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <div class="footer-logo">PHYSI<span>Q</span></div>
+  <div class="footer-copy">© 2025 PHYSIQ — Built for the next generation of lifters</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

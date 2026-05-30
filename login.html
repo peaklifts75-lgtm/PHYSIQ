@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — PHYSIQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+
+    .auth-wrapper {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* ---- LEFT PANEL ---- */
+    .auth-left {
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-left-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .auth-left-bg {
+      position: absolute;
+      bottom: -40px;
+      left: -20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 220px;
+      color: rgba(201,168,76,0.04);
+      letter-spacing: 8px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .auth-left-content {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .auth-left-content .eyebrow {
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .auth-left-content .eyebrow::before { background: var(--gold); }
+
+    .auth-left-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 4vw, 64px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .auth-left-content h2 em { color: var(--gold); font-style: italic; }
+
+    .auth-left-content p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.35);
+      font-weight: 300;
+      max-width: 360px;
+    }
+
+    .auth-perks {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .auth-perk {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+    }
+
+    .perk-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ---- RIGHT PANEL ---- */
+    .auth-right {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .auth-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 6px;
+      color: var(--black);
+      margin-bottom: 48px;
+      display: block;
+      text-decoration: none;
+    }
+    .auth-logo span { color: var(--gold); }
+
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--grey-light);
+      border: 1px solid var(--grey-light);
+      margin-bottom: 40px;
+    }
+
+    .auth-tab {
+      background: var(--white);
+      padding: 14px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--grey);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .auth-tab.active {
+      background: var(--black);
+      color: var(--gold);
+    }
+
+    .auth-form { display: none; }
+    .auth-form.active { display: block; }
+
+    .auth-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+
+    .auth-form .sub {
+      font-size: 13px;
+      color: var(--grey);
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+
+    .field-group { margin-bottom: 20px; }
+
+    .field-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .field-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--grey-light);
+      background: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field-group input:focus { border-color: var(--gold); }
+
+    .auth-submit {
+      width: 100%;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .auth-submit:hover { background: var(--gold); }
+    .auth-submit:disabled {
+      background: var(--grey-light);
+      color: var(--grey);
+      cursor: not-allowed;
+    }
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--grey-light);
+    }
+    .auth-divider span {
+      font-size: 11px;
+      color: var(--grey);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .auth-message {
+      margin-top: 16px;
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 300;
+      display: none;
+      border-left: 3px solid;
+    }
+    .auth-message.success {
+      display: block;
+      background: rgba(201,168,76,0.08);
+      border-color: var(--gold);
+      color: var(--gold-dim);
+    }
+    .auth-message.error {
+      display: block;
+      background: rgba(200,50,50,0.06);
+      border-color: #c83232;
+      color: #a02020;
+    }
+
+    .terms-note {
+      font-size: 11px;
+      color: var(--grey);
+      font-weight: 300;
+      margin-top: 20px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* ---- LOADING SPINNER ---- */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 900px) {
+      .auth-wrapper { grid-template-columns: 1fr; }
+      .auth-left { display: none; }
+      .auth-right { padding: 100px 24px 48px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="auth-wrapper">
+
+  <!-- LEFT PANEL -->
+  <div class="auth-left">
+    <div class="auth-left-grid"></div>
+    <div class="auth-left-bg">PH</div>
+
+    <div class="auth-left-content">
+      <div class="eyebrow">Welcome to PHYSIQ</div>
+      <h2>Your physique.<br>Your <em>program.</em><br>Your data.</h2>
+      <p>Everything personalized to you — your body, your goals, your schedule. Built to actually work.</p>
+    </div>
+
+    <div class="auth-perks">
+      <div class="auth-perk">
+        <div class="perk-dot"></div>
+        The program built for you
+      </div>
+      <div class="auth-perk">
+        <div class="perk-dot"></div>
+        Physique analysis that tells you exactly what to work on
+      </div>
+      <div class="auth-perk">
+        <div class="perk-dot"></div>
+        Macro calculator tailored to your goal
+      </div>
+      <div class="auth-perk">
+        <div class="perk-dot"></div>
+        Progress tracking over time
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="auth-right">
+    <div class="auth-card">
+
+      <a href="index.html" class="auth-logo">PHYSI<span>Q</span></a>
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('signup')">Create Account</button>
+        <button class="auth-tab" onclick="switchTab('login')">Sign In</button>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div class="auth-form active" id="signupForm">
+        <h3>Create your account</h3>
+        <p class="sub">Free to join. No credit card required.</p>
+
+        <div class="field-group">
+          <label>First Name</label>
+          <input type="text" id="signupName" placeholder="Your first name">
+        </div>
+        <div class="field-group">
+          <label>Email</label>
+          <input type="email" id="signupEmail" placeholder="your@email.com">
+        </div>
+        <div class="field-group">
+          <label>Password</label>
+          <input type="password" id="signupPassword" placeholder="Min. 8 characters">
+        </div>
+
+        <button class="auth-submit" id="signupBtn" onclick="handleSignup()">
+          Create Account
+        </button>
+
+        <div class="auth-message" id="signupMessage"></div>
+
+        <p class="terms-note">
+          By signing up you agree to our Terms of Service and Privacy Policy.
+          Your data is never sold or shared.
+        </p>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div class="auth-form" id="loginForm">
+        <h3>Welcome back</h3>
+        <p class="sub">Sign in to access your programs and analysis.</p>
+
+        <div class="field-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="your@email.com">
+        </div>
+        <div class="field-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Your password">
+        </div>
+
+        <button class="auth-submit" id="loginBtn" onclick="handleLogin()">
+          Sign In
+        </button>
+
+        <div class="auth-message" id="loginMessage"></div>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <p class="terms-note">
+          Don't have an account?
+          <span style="color:var(--gold);cursor:pointer;font-weight:500;" onclick="switchTab('signup')">
+            Sign up free
+          </span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ============================================
+  // SUPABASE CONFIG
+  // ============================================
+  const SUPABASE_URL = 'https://ldzsrllsorvjymgldiig.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_xVW1aJXy-YsoKRt2Csq34A_2FYRskd0';
+
+  const { createClient } = supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // Redirect if already logged in
+  db.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = 'dashboard.html';
+  });
+
+  // ============================================
+  // TAB SWITCHING
+  // ============================================
+  function switchTab(tab) {
+    const tabs = document.querySelectorAll('.auth-tab');
+    const forms = document.querySelectorAll('.auth-form');
+    tabs.forEach(t => t.classList.remove('active'));
+    forms.forEach(f => f.classList.remove('active'));
+
+    if (tab === 'signup') {
+      tabs[0].classList.add('active');
+      document.getElementById('signupForm').classList.add('active');
+    } else {
+      tabs[1].classList.add('active');
+      document.getElementById('loginForm').classList.add('active');
+    }
+  }
+
+  // ============================================
+  // SHOW MESSAGE
+  // ============================================
+  function showMessage(id, text, type) {
+    const el = document.getElementById(id);
+    el.textContent = text;
+    el.className = `auth-message ${type}`;
+  }
+
+  function setLoading(btnId, loading) {
+    const btn = document.getElementById(btnId);
+    btn.disabled = loading;
+    btn.innerHTML = loading
+      ? '<span class="spinner"></span>Please wait...'
+      : btn.id === 'signupBtn' ? 'Create Account' : 'Sign In';
+  }
+
+  // ============================================
+  // SIGN UP
+  // ============================================
+  async function handleSignup() {
+    const name     = document.getElementById('signupName').value.trim();
+    const email    = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+
+    if (!name || !email || !password) {
+      return showMessage('signupMessage', 'Please fill in all fields.', 'error');
+    }
+    if (password.length < 8) {
+      return showMessage('signupMessage', 'Password must be at least 8 characters.', 'error');
+    }
+
+    setLoading('signupBtn', true);
+
+    const { data, error } = await db.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+          tier: 'free',
+          trial_start: new Date().toISOString()
+        }
+      }
+    });
+
+    setLoading('signupBtn', false);
+
+    if (error) {
+      showMessage('signupMessage', error.message, 'error');
+    } else {
+      showMessage('signupMessage', '✓ Account created! Check your email to confirm then sign in.', 'success');
+    }
+  }
+
+  // ============================================
+  // SIGN IN
+  // ============================================
+  async function handleLogin() {
+    const email    = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    if (!email || !password) {
+      return showMessage('loginMessage', 'Please enter your email and password.', 'error');
+    }
+
+    setLoading('loginBtn', true);
+
+    const { data, error } = await db.auth.signInWithPassword({ email, password });
+
+    setLoading('loginBtn', false);
+
+    if (error) {
+      showMessage('loginMessage', error.message, 'error');
+    } else {
+      window.location.href = 'dashboard.html';
+    }
+  }
+
+  // Allow Enter key to submit
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    const signupActive = document.getElementById('signupForm').classList.contains('active');
+    signupActive ? handleSignup() : handleLogin();
+  });
+</script>
+
+</body>
+</html>

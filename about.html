@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — PHYSIQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 140px 80px 80px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .about-hero-bg-text {
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 200px;
+      color: rgba(201,168,76,0.04);
+      letter-spacing: 10px;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .about-hero-content .eyebrow {
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .about-hero-content .eyebrow::before { background: var(--gold); }
+
+    .about-hero-content h1 {
+      color: var(--white);
+      margin-bottom: 24px;
+      font-size: clamp(48px, 6vw, 88px);
+    }
+    .about-hero-content h1 em { color: var(--gold); }
+
+    .about-hero-content p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.45);
+      font-weight: 300;
+      max-width: 520px;
+    }
+
+    /* ============================================
+       STORY SECTION — single column, clean
+       ============================================ */
+    .story-section {
+      padding: 100px 80px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .story-block {
+      margin-bottom: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--grey-light);
+    }
+    .story-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .story-block .section-tag { margin-bottom: 20px; }
+
+    .story-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .story-block h3 em { font-style: italic; color: var(--gold); }
+
+    .story-block p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--grey);
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+    .story-block p:last-child { margin-bottom: 0; }
+    .story-block p strong { color: var(--black); font-weight: 500; }
+
+    .pull-quote {
+      border-left: 2px solid var(--gold);
+      padding: 20px 28px;
+      margin: 32px 0;
+      background: var(--white);
+    }
+    .pull-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--black) !important;
+      line-height: 1.5;
+      margin: 0 !important;
+    }
+
+    /* Email capture */
+    .email-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .email-row input {
+      flex: 1;
+      min-width: 200px;
+      padding: 14px 16px;
+      border: 1px solid var(--grey-light);
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-row input:focus { border-color: var(--gold); }
+
+    /* ============================================
+       VALUES
+       ============================================ */
+    .values-section {
+      background: var(--black);
+      padding: 100px 80px;
+    }
+
+    .values-inner { max-width: 1400px; margin: 0 auto; }
+
+    .values-header { margin-bottom: 60px; }
+    .values-header h2 { color: var(--white); font-size: clamp(32px, 4vw, 56px); }
+    .values-header h2 em { color: var(--gold); }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .value-card {
+      background: var(--charcoal);
+      padding: 40px 32px;
+      transition: background 0.2s;
+    }
+    .value-card:hover { background: #222; }
+
+    .value-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: rgba(201,168,76,0.15);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .value-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .value-desc {
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.35);
+      font-weight: 300;
+    }
+
+    /* ============================================
+       BOTTOM CTA
+       ============================================ */
+    .about-cta {
+      padding: 100px 80px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .about-cta .section-tag { justify-content: center; }
+    .about-cta .section-tag::after { display: none; }
+    .about-cta .section-tag::before {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 40px;
+    }
+
+    .about-cta h2 { font-size: clamp(32px, 4vw, 56px); margin-bottom: 20px; }
+    .about-cta p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--grey);
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero { padding: 120px 24px 60px; }
+      .story-section { padding: 60px 24px; }
+      .values-section { padding: 60px 24px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .about-cta { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">PHYSI<span>Q</span></div>
+  <ul>
+    <li><a href="index.html">Build</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="login.html" class="nav-cta">Get Your Plan</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-grid"></div>
+  <div class="about-hero-bg-text">ABOUT</div>
+  <div class="about-hero-content">
+    <div class="eyebrow">The person behind it</div>
+    <h1>
+      I<br>
+      was like <em>you.</em>
+    </h1>
+    <p>
+      No corporate team I wanted to build a tool I would use.
+    </p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story-section">
+
+  <div class="story-block reveal">
+    <div class="section-tag">How it started</div>
+    <h3>I was the guy <em>Googling</em> everything.</h3>
+    <p>
+      When I first started lifting I had no idea what I was doing. I was following random YouTube
+      programs, eating whatever, and wondering why nothing was changing. Every program I found was
+      either too complicated, made for someone twice my age, or just a cookie-cutter PDF that had
+      nothing to do with my actual body or goals.
+    </p>
+    <p>
+      I spent more time researching than actually training. <strong>That frustrated me.</strong>
+      There had to be a better way — something that just told me exactly what to do based on who I actually am.
+    </p>
+  </div>
+
+  <div class="story-block reveal">
+    <div class="section-tag">The turning point</div>
+    <h3>I stopped following.<br>I started <em>building.</em></h3>
+    <p>
+      I started learning everything I could about programming, progressive overload, and aesthetic
+      development specifically. Not just muscle — <strong>proportion. Shape. The V-taper.</strong>
+      The kind of physique that actually looks good, not just big.
+    </p>
+    <div class="pull-quote">
+      <p>"I didn't want to just get bigger. I wanted to look like I actually trained with a purpose."</p>
+    </div>
+    <p>
+      Once I understood the principles, my progress completely changed. And I realized — if I could
+      figure this out, I could build something that handed this knowledge directly to people who are
+      exactly where I was.
+    </p>
+  </div>
+
+  <div class="story-block reveal">
+    <div class="section-tag">Why PHYSIQ exists</div>
+    <h3>Because generic programs <em>don't work.</em></h3>
+    <p>
+      Most fitness apps and programs are built for the average person. But there is no average person.
+      You have your own schedule, your own body, your own weak points, and your own vision for what
+      you want to look like.
+    </p>
+    <p>
+      <strong>PHYSIQ exists to give everyone their own program.</strong> Not a template with your
+      name slapped on it — an actual plan built around your inputs, your goals, and your life.
+    </p>
+  </div>
+
+  <div class="story-block reveal">
+    <div class="section-tag">What's coming</div>
+    <h3>This is just <em>the beginning.</em></h3>
+    <p>
+      The program generator is only the first piece. A physique analyzer, nutrition calculator,
+      progressive overload tracker, and full coaching tools are all in development. The goal is
+      to build the most useful fitness platform available — built by someone in the same position
+      as the people using it.
+    </p>
+    <p>
+      If you want early access to new features as they drop, leave your email below.
+    </p>
+    <div class="email-row">
+      <input type="email" placeholder="your@email.com">
+      <button class="btn-primary" onclick="alert('Thanks — you\'ll be first to know!')">
+        Stay in the Loop
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="values-inner">
+    <div class="values-header reveal">
+      <div class="section-tag" style="color:var(--gold);">What we stand for</div>
+      <h2>The principles<br>behind every <em>plan.</em></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="value-number">01</span>
+        <div class="value-title">Specificity over templates</div>
+        <p class="value-desc">
+          A program that doesn't account for your schedule, equipment, and body type isn't a
+          program — it's a guess. Everything here is built around you specifically.
+        </p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-number">02</span>
+        <div class="value-title">Aesthetics with purpose</div>
+        <p class="value-desc">
+          Lifting to look good isn't shallow — it's a legitimate goal that requires its own
+          approach. We build programs around proportion, shape, and long-term development.
+        </p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-number">03</span>
+        <div class="value-title">No bro-science</div>
+        <p class="value-desc">
+          Every recommendation is grounded in what actually works — progressive overload,
+          compound-first programming, and real recovery. No gimmicks, no shortcuts.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="about-cta reveal">
+  <div class="section-tag">Ready?</div>
+  <h2>Get your <em>personalized</em> program.</h2>
+  <p>Takes 90 seconds. Built around you.</p>
+  <a href="login.html" class="btn-primary">Get Your Plan</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">PHYSI<span>Q</span></div>
+  <div class="footer-copy">© 2025 PHYSIQ — Built for the next generation of lifters</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
