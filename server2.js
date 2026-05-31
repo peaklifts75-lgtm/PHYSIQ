@@ -40,4 +40,6 @@ app.post('/api/analyze', function(req, res) {
   r.end();
 });
 
-app.listen(3000, function() { console.log('PHYSIQ alive on 3000'); });
+app.listen(process.env.PORT || 3000, function() {
+  console.log('PHYSIQ alive on ' + (process.env.PORT || 3000));
+});
