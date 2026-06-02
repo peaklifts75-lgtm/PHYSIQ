@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase Nutrition — PHYSIQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: #0F0F0F; color: var(--white); min-height: 100vh; }
+
+    .dash-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 40px;
+      background: rgba(15,15,15,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .dash-logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 6px; color: var(--white); text-decoration: none; }
+    .dash-logo span { color: var(--gold); }
+    .dash-nav-right { display: flex; align-items: center; gap: 20px; }
+    .dash-nav-right a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .dash-nav-right a:hover { color: var(--gold); }
+
+    .nutrition-main { padding: 100px 40px 60px; max-width: 1200px; margin: 0 auto; }
+
+    /* HEADER */
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: flex-start; }
+    .page-eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: var(--white); line-height: 1.05; }
+    .page-header h1 em { color: var(--gold); font-style: italic; }
+    .page-header p { font-size: 14px; color: rgba(255,255,255,0.3); font-weight: 300; margin-top: 12px; max-width: 500px; }
+    .pro-badge { background: var(--gold); color: var(--black); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; font-weight: 500; }
+
+    /* PHASE SELECTOR */
+    .phase-selector {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 48px;
+    }
+
+    .phase-card {
+      background: #141414; padding: 32px;
+      cursor: pointer; transition: background 0.2s;
+      position: relative; overflow: hidden;
+      border-bottom: 3px solid transparent;
+    }
+    .phase-card:hover { background: #1a1a1a; }
+    .phase-card.active { border-bottom-color: var(--gold); background: #1a1a1a; }
+
+    .phase-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .phase-card.active::before { transform: scaleX(1); }
+
+    .phase-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .phase-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+    .phase-desc { font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 300; line-height: 1.6; margin-bottom: 16px; }
+    .phase-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; display: inline-block; font-weight: 500; }
+    .phase-tag.bulk { background: rgba(201,168,76,0.12); color: var(--gold); }
+    .phase-tag.cut { background: rgba(200,80,80,0.12); color: rgba(220,120,120,0.8); }
+    .phase-tag.recomp { background: rgba(80,150,200,0.12); color: rgba(120,180,220,0.8); }
+
+    /* STATS INPUT */
+    .stats-section {
+      background: #141414; border: 1px solid rgba(255,255,255,0.04);
+      padding: 40px; margin-bottom: 1px;
+    }
+
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 32px; padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-title { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+
+    .stat-input { }
+    .stat-input label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 10px; }
+    .stat-input input, .stat-input select {
+      width: 100%; padding: 12px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--white); font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 300; outline: none;
+      transition: border-color 0.2s; appearance: none;
+    }
+    .stat-input input:focus, .stat-input select:focus { border-color: var(--gold); }
+    .stat-input input::placeholder { color: rgba(255,255,255,0.15); }
+    .stat-input select option { background: #1a1a1a; }
+
+    .generate-btn {
+      background: var(--gold); color: var(--black); border: none;
+      padding: 16px 40px; font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+    }
+    .generate-btn:hover { background: var(--gold-light); }
+
+    /* LOADING */
+    .plan-loading { display: none; background: #141414; border: 1px solid rgba(255,255,255,0.04); border-top: none; padding: 60px; text-align: center; }
+    .plan-loading.active { display: block; }
+    .loading-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 8px; }
+    .loading-title em { color: var(--gold); font-style: italic; }
+    .loading-sub { font-size: 12px; color: rgba(255,255,255,0.2); margin-bottom: 32px; font-weight: 300; }
+    .loading-bar { width: 200px; height: 1px; background: rgba(255,255,255,0.06); margin: 0 auto 16px; overflow: hidden; }
+    .loading-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); animation: loadBar 3s ease forwards; }
+    @keyframes loadBar { from{width:0} to{width:95%} }
+    .loading-msg { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); animation: pulse 1.5s ease infinite; }
+    @keyframes pulse { 0%,100%{opacity:0.2} 50%{opacity:1} }
+
+    /* PLAN OUTPUT */
+    .plan-output { display: none; }
+    .plan-output.active { display: block; }
+
+    /* Overview strip */
+    .plan-overview {
+      background: #141414; border: 1px solid rgba(255,255,255,0.04);
+      border-top: none; padding: 32px 40px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px; align-items: center; margin-bottom: 1px;
+    }
+
+    .overview-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 8px; }
+    .overview-title em { color: var(--gold); font-style: italic; }
+    .overview-sub { font-size: 13px; color: rgba(255,255,255,0.25); font-weight: 300; }
+
+    .overview-stats { display: flex; gap: 32px; }
+    .overview-stat { text-align: center; }
+    .overview-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold); letter-spacing: 2px; line-height: 1; display: block; }
+    .overview-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-top: 4px; display: block; }
+
+    /* Weekly phases grid */
+    .weeks-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 1px;
+    }
+
+    .week-card { background: #141414; padding: 28px; position: relative; transition: background 0.2s; }
+    .week-card:hover { background: #1a1a1a; }
+
+    .week-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: rgba(201,168,76,0.1); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; display: block; }
+    .week-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+
+    .week-macros { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .week-macro { display: flex; justify-content: space-between; align-items: center; }
+    .week-macro-name { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+    .week-macro-val { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--white); letter-spacing: 1px; }
+
+    .week-focus { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.25); font-weight: 300; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px; margin-top: 4px; }
+
+    /* Guidelines */
+    .guidelines-section {
+      background: #141414; border: 1px solid rgba(255,255,255,0.04);
+      border-top: none; padding: 40px;
+    }
+
+    .guidelines-title { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 24px; }
+
+    .guidelines-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .guideline-card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+      padding: 24px;
+    }
+
+    .guideline-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: rgba(201,168,76,0.15); letter-spacing: 2px; line-height: 1; margin-bottom: 8px; }
+    .guideline-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+    .guideline-text { font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.3); font-weight: 300; }
+
+    /* Locked overlay */
+    .locked-overlay { display: none; position: fixed; inset: 0; background: rgba(15,15,15,0.96); z-index: 300; align-items: center; justify-content: center; flex-direction: column; gap: 24px; text-align: center; padding: 40px; }
+    .locked-overlay.active { display: flex; }
+    .locked-icon { font-size: 48px; opacity: 0.3; }
+    .locked-title { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--white); }
+    .locked-title em { color: var(--gold); }
+    .locked-sub { font-size: 15px; color: rgba(255,255,255,0.3); font-weight: 300; max-width: 400px; line-height: 1.7; }
+    .btn-gold { background: var(--gold); color: var(--black); border: none; padding: 14px 32px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .btn-gold:hover { background: var(--gold-light); }
+
+    /* Page loading */
+    .page-loading { position: fixed; inset: 0; background: #0F0F0F; display: flex; align-items: center; justify-content: center; z-index: 999; flex-direction: column; gap: 20px; }
+    .page-loading-logo { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 8px; color: var(--white); }
+    .page-loading-logo span { color: var(--gold); }
+    .page-loading-bar { width: 120px; height: 1px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .page-loading-fill { height: 100%; background: var(--gold); animation: load 1s ease forwards; }
+    @keyframes load { from{width:0} to{width:100%} }
+
+    @media (max-width: 900px) {
+      .dash-nav { padding: 16px 20px; }
+      .nutrition-main { padding: 80px 20px 40px; }
+      .page-header { flex-direction: column; gap: 16px; }
+      .phase-selector { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .weeks-grid { grid-template-columns: 1fr 1fr; }
+      .guidelines-grid { grid-template-columns: 1fr; }
+      .plan-overview { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-loading" id="pageLoading">
+  <div class="page-loading-logo">PHYSI<span>Q</span></div>
+  <div class="page-loading-bar"><div class="page-loading-fill"></div></div>
+</div>
+
+<div class="locked-overlay" id="lockedOverlay">
+  <div class="locked-icon">🔒</div>
+  <div class="locked-title">Pro <em>Feature</em></div>
+  <p class="locked-sub">Phase Nutrition Planning is available on the Pro plan ($19.99/mo). Upgrade to get advanced bulk, cut, and recomp cycles.</p>
+  <a href="dashboard.html#upgrade" class="btn-gold">View Plans</a>
+</div>
+
+<nav class="dash-nav">
+  <a href="dashboard.html" class="dash-logo">PHYSI<span>Q</span></a>
+  <div class="dash-nav-right">
+    <a href="dashboard.html">← Dashboard</a>
+    <a href="macro-calculator.html">Macros</a>
+    <a href="meal-planner.html">Meal Planner</a>
+  </div>
+</nav>
+
+<main class="nutrition-main" id="nutritionMain" style="display:none;">
+
+  <div class="page-header">
+    <div>
+      <div class="page-eyebrow">Pro Feature</div>
+      <h1>Phase <em>Nutrition</em></h1>
+      <p>Advanced bulk, cut, and recomp cycles with weekly macro adjustments — designed to maximize results at every stage.</p>
+    </div>
+    <div class="pro-badge">Pro Exclusive</div>
+  </div>
+
+  <!-- Phase Selector -->
+  <div class="phase-selector">
+    <div class="phase-card active" onclick="selectPhase(this, 'bulk')">
+      <span class="phase-icon">📦</span>
+      <div class="phase-name">Lean Bulk</div>
+      <p class="phase-desc">Build maximum muscle with minimal fat gain. Structured calorie surplus with progressive overload focus.</p>
+      <span class="phase-tag bulk">Muscle Building</span>
+    </div>
+    <div class="phase-card" onclick="selectPhase(this, 'cut')">
+      <span class="phase-icon">🔥</span>
+      <div class="phase-name">Aggressive Cut</div>
+      <p class="phase-desc">Shred body fat while protecting hard-earned muscle. Strategic deficit with high protein to preserve mass.</p>
+      <span class="phase-tag cut">Fat Loss</span>
+    </div>
+    <div class="phase-card" onclick="selectPhase(this, 'recomp')">
+      <span class="phase-icon">⚖️</span>
+      <div class="phase-name">Recomposition</div>
+      <p class="phase-desc">Simultaneously build muscle and lose fat. Ideal for intermediates who want to transform their physique.</p>
+      <span class="phase-tag recomp">Body Recomp</span>
+    </div>
+  </div>
+
+  <!-- Stats Input -->
+  <div class="stats-section">
+    <div class="section-header">
+      <div class="section-title">Your Stats</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-input">
+        <label>Age</label>
+        <input type="number" id="inputAge" placeholder="17" min="13" max="99">
+      </div>
+      <div class="stat-input">
+        <label>Weight (lbs)</label>
+        <input type="number" id="inputWeight" placeholder="160">
+      </div>
+      <div class="stat-input">
+        <label>Height</label>
+        <input type="text" id="inputHeight" placeholder='5&apos;10"'>
+      </div>
+      <div class="stat-input">
+        <label>Activity Level</label>
+        <select id="inputActivity">
+          <option value="sedentary">Sedentary</option>
+          <option value="light" selected>Lightly Active</option>
+          <option value="moderate">Moderately Active</option>
+          <option value="very">Very Active</option>
+        </select>
+      </div>
+      <div class="stat-input">
+        <label>Phase Duration</label>
+        <select id="inputDuration">
+          <option value="4">4 Weeks</option>
+          <option value="8" selected>8 Weeks</option>
+          <option value="12">12 Weeks</option>
+          <option value="16">16 Weeks</option>
+        </select>
+      </div>
+    </div>
+    <button class="generate-btn" onclick="generatePlan()">Generate My Phase Plan →</button>
+  </div>
+
+  <!-- Loading -->
+  <div class="plan-loading" id="planLoading">
+    <div class="loading-title">Building your <em>phase plan...</em></div>
+    <p class="loading-sub">Creating a week-by-week nutrition roadmap tailored to your stats and goal.</p>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+    <div class="loading-msg" id="loadingMsg">Calculating your baseline...</div>
+  </div>
+
+  <!-- Plan Output -->
+  <div class="plan-output" id="planOutput">
+
+    <div class="plan-overview">
+      <div>
+        <div class="overview-title" id="overviewTitle">Your <em>Lean Bulk</em> Plan</div>
+        <p class="overview-sub" id="overviewSub">Week by week macro progression built around your stats.</p>
+      </div>
+      <div class="overview-stats">
+        <div class="overview-stat">
+          <span class="overview-num" id="overviewCals">—</span>
+          <span class="overview-label">Start Calories</span>
+        </div>
+        <div class="overview-stat">
+          <span class="overview-num" id="overviewProtein">—</span>
+          <span class="overview-label">Protein (g)</span>
+        </div>
+        <div class="overview-stat">
+          <span class="overview-num" id="overviewWeeks">—</span>
+          <span class="overview-label">Weeks</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="weeks-grid" id="weeksGrid"></div>
+
+    <div class="guidelines-section">
+      <div class="guidelines-title">Phase Guidelines</div>
+      <div class="guidelines-grid" id="guidelinesGrid"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL  = 'https://ldzsrllsorvjymgldiig.supabase.co';
+  const SUPABASE_ANON = 'sb_publishable_xVW1aJXy-YsoKRt2Csq34A_2FYRskd0';
+  const { createClient } = supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  let selectedPhase = 'bulk';
+
+  async function initPage() {
+    const { data: { session } } = await db.auth.getSession();
+    if (!session) { window.location.href = 'login.html'; return; }
+    const tier = session.user.user_metadata?.tier || 'free';
+    if (tier !== 'pro') {
+      document.getElementById('lockedOverlay').classList.add('active');
+    }
+    document.getElementById('pageLoading').style.display = 'none';
+    document.getElementById('nutritionMain').style.display = 'block';
+  }
+
+  function selectPhase(el, phase) {
+    document.querySelectorAll('.phase-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    selectedPhase = phase;
+  }
+
+  async function generatePlan() {
+    const age      = document.getElementById('inputAge').value || 17;
+    const weight   = document.getElementById('inputWeight').value || 160;
+    const height   = document.getElementById('inputHeight').value || '5\'10"';
+    const activity = document.getElementById('inputActivity').value;
+    const duration = document.getElementById('inputDuration').value;
+
+    document.getElementById('planOutput').classList.remove('active');
+    document.getElementById('planLoading').classList.add('active');
+
+    const msgs = ['Calculating your baseline...', 'Mapping your phase...', 'Building weekly progressions...', 'Writing your guidelines...', 'Finalizing your plan...'];
+    let i = 0;
+    const msgInterval = setInterval(() => {
+      if (i < msgs.length) document.getElementById('loadingMsg').textContent = msgs[i++];
+    }, 600);
+
+    const phaseNames = { bulk: 'Lean Bulk', cut: 'Aggressive Cut', recomp: 'Body Recomposition' };
+
+    const prompt = `You are an expert sports nutritionist. Create a detailed ${duration}-week ${phaseNames[selectedPhase]} phase nutrition plan for this person:
+
+Age: ${age}
+Weight: ${weight} lbs
+Height: ${height}
+Activity: ${activity}
+Phase: ${selectedPhase}
+Duration: ${duration} weeks
+
+Respond ONLY with this exact JSON format, no backticks:
+{
+  "startCalories": <number>,
+  "protein": <number in grams>,
+  "overview": "<2 sentence overview of this phase plan>",
+  "weeks": [
+    {
+      "weekRange": "Week 1-2",
+      "title": "<focus title e.g. Foundation Phase>",
+      "calories": <number>,
+      "protein": <number>,
+      "carbs": <number>,
+      "fats": <number>,
+      "focus": "<one sentence on the focus for these weeks>"
+    }
+  ],
+  "guidelines": [
+    { "title": "<guideline title>", "text": "<2 sentence explanation>" },
+    { "title": "<guideline title>", "text": "<2 sentence explanation>" },
+    { "title": "<guideline title>", "text": "<2 sentence explanation>" },
+    { "title": "<guideline title>", "text": "<2 sentence explanation>" }
+  ]
+}
+
+Create ${Math.ceil(parseInt(duration)/2)} week entries (group every 2 weeks). Make the plan progressive and realistic. Guidelines should be specific to the ${selectedPhase} phase.`;
+
+    try {
+      const response = await fetch('https://physiq-xotj.onrender.com/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-5',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+
+      const data = await response.json();
+      clearInterval(msgInterval);
+      const raw = data.content?.[0]?.text || '{}';
+      const clean = raw.replace(/```json|```/g, '').trim();
+      const plan = JSON.parse(clean);
+      renderPlan(plan, duration);
+
+    } catch (err) {
+      clearInterval(msgInterval);
+      document.getElementById('planLoading').classList.remove('active');
+      alert('Something went wrong. Please try again.');
+    }
+  }
+
+  function renderPlan(plan, duration) {
+    document.getElementById('planLoading').classList.remove('active');
+    document.getElementById('planOutput').classList.add('active');
+
+    const phaseNames = { bulk: 'Lean Bulk', cut: 'Aggressive Cut', recomp: 'Body Recomposition' };
+
+    document.getElementById('overviewTitle').innerHTML = `Your <em>${phaseNames[selectedPhase]}</em> Plan`;
+    document.getElementById('overviewSub').textContent = plan.overview || '';
+    document.getElementById('overviewCals').textContent = plan.startCalories?.toLocaleString() || '—';
+    document.getElementById('overviewProtein').textContent = (plan.protein || '—') + 'g';
+    document.getElementById('overviewWeeks').textContent = duration;
+
+    // Weeks grid
+    document.getElementById('weeksGrid').innerHTML = (plan.weeks || []).map((week, i) => `
+      <div class="week-card">
+        <span class="week-num">0${i + 1}</span>
+        <div class="week-title">${week.weekRange} · ${week.title}</div>
+        <div class="week-macros">
+          <div class="week-macro">
+            <span class="week-macro-name">Calories</span>
+            <span class="week-macro-val">${week.calories?.toLocaleString()}</span>
+          </div>
+          <div class="week-macro">
+            <span class="week-macro-name">Protein</span>
+            <span class="week-macro-val">${week.protein}g</span>
+          </div>
+          <div class="week-macro">
+            <span class="week-macro-name">Carbs</span>
+            <span class="week-macro-val">${week.carbs}g</span>
+          </div>
+          <div class="week-macro">
+            <span class="week-macro-name">Fats</span>
+            <span class="week-macro-val">${week.fats}g</span>
+          </div>
+        </div>
+        <div class="week-focus">${week.focus}</div>
+      </div>
+    `).join('');
+
+    // Guidelines
+    document.getElementById('guidelinesGrid').innerHTML = (plan.guidelines || []).map((g, i) => `
+      <div class="guideline-card">
+        <div class="guideline-num">0${i + 1}</div>
+        <div class="guideline-title">${g.title}</div>
+        <div class="guideline-text">${g.text}</div>
+      </div>
+    `).join('');
+  }
+
+  initPage();
+</script>
+</body>
+</html>

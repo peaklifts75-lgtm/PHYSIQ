@@ -25,7 +25,6 @@
 
     .progress-main { padding: 100px 40px 60px; max-width: 1200px; margin: 0 auto; }
 
-    /* HEADER */
     .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: flex-end; }
     .page-eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
     .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: var(--white); line-height: 1.05; }
@@ -41,7 +40,6 @@
     }
     .upload-new-btn:hover { background: var(--gold-light); }
 
-    /* STATS ROW */
     .stats-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 1px; background: rgba(255,255,255,0.04);
@@ -53,8 +51,7 @@
     .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold); letter-spacing: 2px; line-height: 1; display: block; }
     .stat-sub { font-size: 11px; color: rgba(255,255,255,0.15); margin-top: 6px; display: block; font-weight: 300; }
 
-    /* COMPARISON VIEW */
-    .compare-section { margin-bottom: 48px; }
+    .compare-section { margin-bottom: 0; }
     .section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
     .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.05); }
 
@@ -69,7 +66,6 @@
       aspect-ratio: 3/4; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
     }
-
     .compare-slot img { width: 100%; height: 100%; object-fit: cover; display: none; }
     .compare-slot img.visible { display: block; }
 
@@ -77,8 +73,7 @@
       position: absolute; top: 16px; left: 16px;
       background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
       padding: 6px 14px; font-size: 10px; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--gold); font-weight: 500;
-      z-index: 2;
+      text-transform: uppercase; color: var(--gold); font-weight: 500; z-index: 2;
     }
 
     .compare-date {
@@ -95,19 +90,75 @@
     .slot-empty-icon { font-size: 32px; opacity: 0.15; margin-bottom: 12px; }
     .slot-empty-text { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.15); }
 
-    .slot-select {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
-      padding: 10px 20px; font-family: 'DM Sans', sans-serif;
-      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--gold); cursor: pointer; transition: all 0.2s; z-index: 3;
-      display: none;
+    /* AI ANALYSIS STRIP */
+    .ai-compare-strip {
+      background: #141414;
+      border: 1px solid rgba(201,168,76,0.15);
+      border-top: none;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 0;
     }
-    .slot-select.visible { display: block; }
-    .slot-select:hover { background: rgba(201,168,76,0.2); }
 
-    /* PHOTO GRID */
-    .photos-section { margin-bottom: 48px; }
+    .ai-strip-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px; font-weight: 500;
+    }
+
+    .ai-strip-sub {
+      font-size: 13px; color: rgba(255,255,255,0.25); font-weight: 300;
+    }
+
+    .ai-analyze-btn {
+      background: var(--gold); color: var(--black); border: none;
+      padding: 14px 28px; font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .ai-analyze-btn:hover { background: var(--gold-light); }
+    .ai-analyze-btn:disabled { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.2); cursor: not-allowed; }
+
+    /* AI RESULT */
+    .ai-result {
+      background: #141414;
+      border: 1px solid rgba(255,255,255,0.04);
+      border-top: none;
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+
+    .ai-result-tag {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 8px; font-weight: 500;
+    }
+
+    .ai-result-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 20px;
+    }
+    .ai-result-title em { color: var(--gold); font-style: italic; }
+
+    .ai-result-body {
+      font-size: 14px; line-height: 1.85;
+      color: rgba(255,255,255,0.5); font-weight: 300;
+    }
+
+    .ai-reanalyze {
+      margin-top: 20px; background: none;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.3); padding: 10px 20px;
+      font-family: 'DM Sans', sans-serif; font-size: 11px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: all 0.2s; display: block;
+    }
+    .ai-reanalyze:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* PHOTOS SECTION */
+    .photos-section { margin-bottom: 48px; margin-top: 48px; }
 
     .photos-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -120,7 +171,6 @@
       aspect-ratio: 3/4; cursor: pointer;
     }
     .photo-card:hover .photo-overlay { opacity: 1; }
-
     .photo-card img { width: 100%; height: 100%; object-fit: cover; }
 
     .photo-overlay {
@@ -152,7 +202,6 @@
     .photo-card-date { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 300; }
     .photo-card-weight { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); letter-spacing: 1px; }
 
-    /* EMPTY STATE */
     .empty-state {
       grid-column: 1 / -1; padding: 80px 40px;
       text-align: center; background: #141414;
@@ -161,7 +210,7 @@
     .empty-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: rgba(255,255,255,0.2); margin-bottom: 8px; }
     .empty-sub { font-size: 13px; color: rgba(255,255,255,0.1); font-weight: 300; margin-bottom: 28px; }
 
-    /* UPLOAD MODAL */
+    /* MODAL */
     .modal-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
@@ -171,10 +220,8 @@
 
     .modal {
       background: #141414; border: 1px solid rgba(255,255,255,0.08);
-      width: 100%; max-width: 500px; padding: 48px;
-      position: relative;
+      width: 100%; max-width: 500px; padding: 48px; position: relative;
     }
-
     .modal::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
 
     .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 8px; }
@@ -208,8 +255,7 @@
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       color: var(--white); font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 300; outline: none;
-      transition: border-color 0.2s;
+      font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.2s;
     }
     .modal-field input:focus { border-color: var(--gold); }
     .modal-field input::placeholder { color: rgba(255,255,255,0.15); }
@@ -223,7 +269,6 @@
     .modal-submit:hover { background: var(--gold-light); }
     .modal-submit:disabled { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.2); cursor: not-allowed; }
 
-    /* Locked overlay */
     .locked-overlay { display: none; position: fixed; inset: 0; background: rgba(15,15,15,0.96); z-index: 300; align-items: center; justify-content: center; flex-direction: column; gap: 24px; text-align: center; padding: 40px; }
     .locked-overlay.active { display: flex; }
     .locked-icon { font-size: 48px; opacity: 0.3; }
@@ -233,7 +278,6 @@
     .btn-gold { background: var(--gold); color: var(--black); border: none; padding: 14px 32px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
     .btn-gold:hover { background: var(--gold-light); }
 
-    /* Page loading */
     .page-loading { position: fixed; inset: 0; background: #0F0F0F; display: flex; align-items: center; justify-content: center; z-index: 999; flex-direction: column; gap: 20px; }
     .page-loading-logo { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 8px; color: var(--white); }
     .page-loading-logo span { color: var(--gold); }
@@ -248,6 +292,7 @@
       .stats-row { grid-template-columns: 1fr 1fr; }
       .compare-grid { grid-template-columns: 1fr; }
       .photos-grid { grid-template-columns: 1fr 1fr; }
+      .ai-compare-strip { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -271,7 +316,6 @@
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-title">Upload Progress Photo</div>
     <p class="modal-sub">Track your transformation over time. Photos are stored securely.</p>
-
     <div class="upload-zone" id="modalUploadZone">
       <input type="file" id="modalPhotoInput" accept="image/jpeg,image/png,image/webp" onchange="handleModalPhoto(event)">
       <img id="modalPreview" alt="Preview">
@@ -280,20 +324,15 @@
         <div class="upload-text">Click to upload or drag & drop</div>
       </div>
     </div>
-
     <div class="modal-field">
       <label>Date</label>
       <input type="date" id="photoDate">
     </div>
-
     <div class="modal-field">
       <label>Weight (lbs) — optional</label>
       <input type="number" id="photoWeight" placeholder="e.g. 162">
     </div>
-
-    <button class="modal-submit" id="modalSubmit" onclick="savePhoto()" disabled>
-      Save Progress Photo
-    </button>
+    <button class="modal-submit" id="modalSubmit" onclick="savePhoto()" disabled>Save Progress Photo</button>
   </div>
 </div>
 
@@ -316,7 +355,6 @@
     <button class="upload-new-btn" onclick="openModal()">+ Upload Photo</button>
   </div>
 
-  <!-- Stats -->
   <div class="stats-row">
     <div class="stat-card">
       <span class="stat-label">Photos Uploaded</span>
@@ -340,7 +378,6 @@
     </div>
   </div>
 
-  <!-- Comparison -->
   <div class="compare-section">
     <div class="section-label">Side by Side Comparison</div>
     <div class="compare-grid">
@@ -369,9 +406,27 @@
         </div>
       </div>
     </div>
+
+    <!-- AI Strip — shows when both comparison slots are filled -->
+    <div class="ai-compare-strip" id="aiStrip" style="display:none;">
+      <div class="ai-strip-left">
+        <div class="ai-strip-label">AI Progress Analysis</div>
+        <p class="ai-strip-sub">Let PHYSIQ compare your two photos and break down exactly what's improved.</p>
+      </div>
+      <button class="ai-analyze-btn" id="aiAnalyzeBtn" onclick="analyzeProgress()">
+        Analyze My Progress →
+      </button>
+    </div>
+
+    <!-- AI Result -->
+    <div class="ai-result" id="aiResult" style="display:none;">
+      <div class="ai-result-tag">AI Assessment</div>
+      <div class="ai-result-title">Your <em>Progress</em></div>
+      <div class="ai-result-body" id="aiResultBody"></div>
+      <button class="ai-reanalyze" onclick="analyzeProgress()">Reanalyze ↻</button>
+    </div>
   </div>
 
-  <!-- Photo Grid -->
   <div class="photos-section">
     <div class="section-label">All Photos</div>
     <div class="photos-grid" id="photosGrid">
@@ -394,14 +449,11 @@
   const db = createClient(SUPABASE_URL, SUPABASE_ANON);
 
   let currentUser = null;
-  let photos = []; // stored in localStorage as base64 for now
+  let photos = [];
   let selectedLeft = null;
   let selectedRight = null;
   let pendingImageBase64 = null;
 
-  // ============================================
-  // INIT
-  // ============================================
   async function initPage() {
     const { data: { session } } = await db.auth.getSession();
     if (!session) { window.location.href = 'login.html'; return; }
@@ -410,20 +462,12 @@
     if (tier !== 'pro') {
       document.getElementById('lockedOverlay').classList.add('active');
     }
-
-    // Set today's date as default
     document.getElementById('photoDate').value = new Date().toISOString().split('T')[0];
-
-    // Load photos from localStorage
     loadPhotos();
-
     document.getElementById('pageLoading').style.display = 'none';
     document.getElementById('progressMain').style.display = 'block';
   }
 
-  // ============================================
-  // PHOTO STORAGE (localStorage)
-  // ============================================
   function loadPhotos() {
     const key = `physiq_progress_${currentUser.id}`;
     const stored = localStorage.getItem(key);
@@ -436,9 +480,6 @@
     localStorage.setItem(key, JSON.stringify(photos));
   }
 
-  // ============================================
-  // MODAL
-  // ============================================
   function openModal() {
     document.getElementById('uploadModal').classList.add('active');
   }
@@ -458,7 +499,6 @@
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (ev) => {
-      // Compress image
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement('canvas');
@@ -469,7 +509,6 @@
         canvas.width = w; canvas.height = h;
         canvas.getContext('2d').drawImage(img, 0, 0, w, h);
         pendingImageBase64 = canvas.toDataURL('image/jpeg', 0.7);
-
         const preview = document.getElementById('modalPreview');
         preview.src = pendingImageBase64;
         preview.classList.add('visible');
@@ -486,16 +525,8 @@
     if (!pendingImageBase64) return;
     const date   = document.getElementById('photoDate').value || new Date().toISOString().split('T')[0];
     const weight = document.getElementById('photoWeight').value || null;
-
-    const photo = {
-      id: Date.now().toString(),
-      date,
-      weight,
-      image: pendingImageBase64,
-      createdAt: new Date().toISOString()
-    };
-
-    photos.unshift(photo); // newest first
+    const photo  = { id: Date.now().toString(), date, weight, image: pendingImageBase64, createdAt: new Date().toISOString() };
+    photos.unshift(photo);
     savePhotos();
     renderAll();
     closeModal();
@@ -510,45 +541,46 @@
   }
 
   function setCompare(photo, slot) {
-    if (slot === 'left') {
-      selectedLeft = photo;
-    } else {
-      selectedRight = photo;
-    }
+    if (slot === 'left') selectedLeft = photo;
+    else selectedRight = photo;
     renderCompare();
+    updateAiStrip();
   }
 
-  // ============================================
-  // RENDER
-  // ============================================
+  function updateAiStrip() {
+    const strip = document.getElementById('aiStrip');
+    if (selectedLeft && selectedRight) {
+      strip.style.display = 'flex';
+    } else {
+      strip.style.display = 'none';
+      document.getElementById('aiResult').style.display = 'none';
+    }
+  }
+
   function renderAll() {
     renderStats();
     renderCompare();
     renderGrid();
+    updateAiStrip();
   }
 
   function renderStats() {
     document.getElementById('statPhotos').textContent = photos.length;
-
     if (photos.length === 0) {
       document.getElementById('statDays').textContent = '0';
       document.getElementById('statStart').textContent = '—';
       document.getElementById('statCurrent').textContent = '—';
       return;
     }
-
     const sorted = [...photos].sort((a, b) => new Date(a.date) - new Date(b.date));
-    const first  = sorted[0];
-    const last   = sorted[sorted.length - 1];
-    const days   = Math.floor((new Date(last.date) - new Date(first.date)) / 86400000);
-
+    const first = sorted[0], last = sorted[sorted.length - 1];
+    const days = Math.floor((new Date(last.date) - new Date(first.date)) / 86400000);
     document.getElementById('statDays').textContent    = days;
     document.getElementById('statStart').textContent   = first.weight || '—';
     document.getElementById('statCurrent').textContent = last.weight || '—';
   }
 
   function renderCompare() {
-    // Auto-select first and last if none selected
     if (photos.length >= 2 && !selectedLeft && !selectedRight) {
       const sorted = [...photos].sort((a, b) => new Date(a.date) - new Date(b.date));
       selectedLeft  = sorted[0];
@@ -578,7 +610,6 @@
       selectedLeft,
       document.querySelector('#compareLeft .slot-empty')
     );
-
     setSlot(
       document.getElementById('compareRightImg'),
       document.getElementById('compareRightDate'),
@@ -591,18 +622,10 @@
 
   function renderGrid() {
     const grid = document.getElementById('photosGrid');
-
     if (photos.length === 0) {
-      grid.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">📸</div>
-          <div class="empty-title">No photos yet</div>
-          <p class="empty-sub">Upload your first progress photo to start tracking your transformation.</p>
-          <button class="upload-new-btn" onclick="openModal()">Upload First Photo</button>
-        </div>`;
+      grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📸</div><div class="empty-title">No photos yet</div><p class="empty-sub">Upload your first progress photo to start tracking your transformation.</p><button class="upload-new-btn" onclick="openModal()">Upload First Photo</button></div>`;
       return;
     }
-
     grid.innerHTML = photos.map(photo => `
       <div class="photo-card">
         <img src="${photo.image}" alt="Progress photo">
@@ -626,6 +649,51 @@
   function formatDate(dateStr) {
     const d = new Date(dateStr + 'T00:00:00');
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  async function analyzeProgress() {
+    if (!selectedLeft || !selectedRight) return;
+
+    document.getElementById('aiResult').style.display = 'none';
+    document.getElementById('aiAnalyzeBtn').disabled = true;
+    document.getElementById('aiAnalyzeBtn').textContent = 'Analyzing...';
+
+    const prompt = `You are a physique coach analyzing someone's fitness progress. You are being shown two photos taken at different times.
+
+Photo 1 (Before): taken on ${formatDate(selectedLeft.date)}${selectedLeft.weight ? ', weight: ' + selectedLeft.weight + ' lbs' : ''}
+Photo 2 (After): taken on ${formatDate(selectedRight.date)}${selectedRight.weight ? ', weight: ' + selectedRight.weight + ' lbs' : ''}
+
+Analyze what has visibly changed between the two photos. Be specific about muscle groups, body composition, and aesthetic improvements. Be encouraging and constructive. Keep it to 3-4 sentences. Focus on what's genuinely improved.`;
+
+    try {
+      const response = await fetch('https://physiq-xotj.onrender.com/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-5',
+          max_tokens: 500,
+          messages: [{
+            role: 'user',
+            content: [
+              { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: selectedLeft.image.split(',')[1] } },
+              { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: selectedRight.image.split(',')[1] } },
+              { type: 'text', text: prompt }
+            ]
+          }]
+        })
+      });
+
+      const data = await response.json();
+      const text = data.content?.[0]?.text || 'Analysis complete.';
+      document.getElementById('aiResultBody').textContent = text;
+      document.getElementById('aiResult').style.display = 'block';
+
+    } catch (err) {
+      alert('Something went wrong. Please try again.');
+    } finally {
+      document.getElementById('aiAnalyzeBtn').disabled = false;
+      document.getElementById('aiAnalyzeBtn').textContent = 'Analyze My Progress →';
+    }
   }
 
   initPage();
