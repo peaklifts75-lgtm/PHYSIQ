@@ -159,14 +159,15 @@ async function generateProgram() {
   }, 480);
 
   try {
-   const response = await fetch('https://physiq-xotj.onrender.com/api/analyze', {
-      method: 'POST',
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: buildPrompt(formData) }]
-      })
-    });
+  const response = await fetch('https://physiq-xotj.onrender.com/api/analyze', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-5',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: buildPrompt(formData) }]
+    })
+  });
 
     const data = await response.json();
     clearInterval(msgInterval);
