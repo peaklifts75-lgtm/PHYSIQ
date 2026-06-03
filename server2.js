@@ -93,12 +93,43 @@ app.post('/api/webhook', require('express').raw({ type: 'application/json' }), a
     return res.status(400).send('Webhook Error');
   }
 
-  if (event.type === 'checkout.session.completed') {
+ if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     const userId  = session.metadata.userId;
     const tier    = session.metadata.tier;
     console.log(`Payment complete — userId: ${userId}, tier: ${tier}`);
-    // Supabase tier update would go here with service role key
+
+    // Update user tier in Supabase
+    const updateBody = JSON.stringify({
+      data: { tier: tier }
+    });
+
+    const options = {
+      hostname: process.env.SUPABASE_URL.replace('https://', ''),
+      path: `/auth/v1/admin/users/${userId}`,
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.SUPABASE_SERVICE_KEY}`,
+        'apikey': process.env.SUPABASE_SERVICE_KEY,
+        'Content-Length': Buffer.byteLength(updateBody)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => console.log('Tier updated:', d));
+    });
+    req.on('error', e => console.error('Supabase update error:', e));
+    req.write(updateBody);
+    req.end();
+  }
+
+  if (event.type === 'customer.subscription.deleted') {
+    const subscription = event.data.object;
+    const customerId = subscription.customer;
+    console.log(`Subscription cancelled — customerId: ${customerId}`);
   }
 
   res.json({ received: true });
