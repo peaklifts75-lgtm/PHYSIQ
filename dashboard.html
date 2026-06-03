@@ -258,7 +258,7 @@
       <span class="section-tag">Level up</span>
       <h2>Unlock the full<br><em>PHYSIQ</em> experience.</h2>
       <p>The free program generator is just the start. Upgrade to get physique analysis, macro tracking, progress comparisons, and everything you need to actually transform your body with purpose.</p>
-      <a href="#" class="upgrade-btn" onclick="alert('Stripe coming soon!')">Start Base — $9.99/mo</a>
+      <a href="#upgrade" class="upgrade-btn">Start Base — $9.99/mo</a>
     </div>
     <div class="plan-grid">
       <div class="plan-card">
@@ -271,7 +271,7 @@
           <li>Tips Generator</li>
           <li>Saved Programs</li>
         </ul>
-        <button class="plan-btn outline" onclick="alert('Stripe coming soon!')">Get Base</button>
+        <button class="plan-btn outline" onclick="handleUpgrade('base')">Get Base</button>
       </div>
       <div class="plan-card highlight">
         <span class="plan-label">Pro — Most Popular</span>
@@ -283,7 +283,7 @@
           <li>Phase Nutrition Plans</li>
           <li>Everything in Base</li>
         </ul>
-        <button class="plan-btn gold" onclick="alert('Stripe coming soon!')">Get Pro</button>
+       <button class="plan-btn gold" onclick="handleUpgrade('pro')">Get Pro</button>
       </div>
     </div>
   </div>
@@ -385,7 +385,29 @@
     };
     alert(messages[feature] || 'Upgrade to unlock this feature.');
   }
+async function handleUpgrade(tier) {
+  const { data: { session } } = await db.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
 
+  const response = await fetch('https://physiq-xotj.onrender.com/api/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      tier: tier,
+      userId: session.user.id,
+      email: session.user.email,
+      successUrl: 'https://peaklifts75-lgtm.github.io/PHYSIQ/dashboard.html',
+      cancelUrl: 'https://peaklifts75-lgtm.github.io/PHYSIQ/dashboard.html'
+    })
+  });
+
+  const data = await response.json();
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert('Something went wrong. Please try again.');
+  }
+}
   async function handleLogout() {
     await db.auth.signOut();
     window.location.href = 'login.html';
