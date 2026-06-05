@@ -361,6 +361,7 @@
     const card = document.getElementById(cardId);
     card.classList.remove('locked');
     card.setAttribute('href', href);
+    card.onclick = function() { window.location.href = href; };
     card.style.cursor = 'pointer';
     card.onclick = null;
 
