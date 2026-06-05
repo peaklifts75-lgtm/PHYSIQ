@@ -363,7 +363,7 @@
     card.setAttribute('href', href);
     card.onclick = function() { window.location.href = href; };
     card.style.cursor = 'pointer';
-    card.onclick = null;
+  
 
     const lockEl = card.querySelector('.lock-overlay');
     if (lockEl) lockEl.remove();
