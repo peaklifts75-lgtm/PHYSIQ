@@ -558,12 +558,19 @@ Equipment: ${data.equipment || 'full gym'}
 Priority Muscle Group: ${data.focus || 'back and lats'}
 Additional Notes: ${data.notes || 'none'}
 
-REP AND SET SCHEME — CRITICAL:
-This person selected "${data.goal}" as their goal. You MUST use these exact rep and set ranges throughout the entire program:
-- Rep range: ${repScheme.range}
-- Sets: ${repScheme.sets}
+REP AND SET SCHEME — THIS IS NON-NEGOTIABLE:
+Goal selected: "${data.goal}"
+
+STRICT RULES — VIOLATING THESE IS NOT ALLOWED:
+- Every single exercise in the program MUST use exactly ${repScheme.range}
+- Every single exercise MUST use ${repScheme.sets}
+- NO exercise may go above the maximum sets or outside the rep range listed above
+- Do NOT write 4 sets for aesthetic goal — maximum is 3 sets, 4 is only allowed once in the entire program if absolutely necessary
+- Do NOT write 15 reps, 12 reps, or any reps outside the stated range
+- Format every exercise as: Exercise Name — X sets x X reps (e.g. Incline Barbell Press — 3 sets x 8 reps)
 - Training focus: ${repScheme.focus}
-Do NOT deviate from these rep ranges. Every exercise listed must show sets x reps within this range.
+
+If you write any exercise outside these ranges the program is wrong. Double check every exercise before responding.
 
 Programming rules:
 - Always prioritize compound movements first, accessories second.
@@ -572,11 +579,12 @@ Programming rules:
 - Focus on aesthetic development — V-taper, shoulder width, arm definition.
 
 Preferred exercises:
-- Chest: Incline Barbell Press, Cable Flyes, Dips
-- Back: Pull-Ups, Barbell Rows, Lat Pulldowns, Face Pulls
-- Shoulders: Overhead Press, Lateral Raises, Rear Delt Flyes
-- Arms: Barbell Curls, Hammer Curls, Tricep Pushdowns, Skull Crushers
-- Legs: Squats, Romanian Deadlifts, Leg Press, Leg Curls
+- Chest: Pec Deck, Smith Machine Incline Bench Press, Machine Chest Press, Dips (tilted forward)
+- Back: Chest Supported Rows, Pull-Ups, Barbell Rows, Lat Pulldowns, Kelso Shrugs 
+- Shoulders: Overhead Press, Cable Lateral Raises, Rear Delt Flyes, Shoulder Press Machine
+- Arms: Barbell Curls, Hammer Curls, Tricep Pushdowns, Overhead tricep extensions, JM Press
+- Legs: Back Squat, Romanian Deadlifts, Leg Press, Leg Curls, Hip abduction machine
+- Core: Hanging Leg Raises, Cable Crunches, Machine Crunches, Weighted decline sit-ups
 
 Write a detailed 12-week program. Include:
 1. Personal intro addressing ${data.name} directly
@@ -584,9 +592,9 @@ Write a detailed 12-week program. Include:
 3. Week 1-4: key exercises with sets x reps (must be ${repScheme.range})
 4. Week 5-8: progression adjustments (still within ${repScheme.range})
 5. Week 9-12: intensity phase (still within ${repScheme.range})
-6. One key nutrition tip for their goal
+6. One key nutrition tip for their goal. Recommend 0.8-1 gram of protein per pound of bodyweight, and a caloric surplus for bulking or deficit for cutting. Recommend whole foods when possible over processed.
 
-Be motivating and specific. Format with clear headers. ~400-500 words.`;
+Be motivating and specific. Format with clear headers. ~300-500 words.`;
   }
 
   async function generateProgram() {
