@@ -9,7 +9,6 @@
   <style>
     body { background: #0F0F0F; color: var(--white); min-height: 100vh; }
 
-    /* NAV */
     .dash-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
@@ -24,40 +23,30 @@
     .dash-nav-right a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
     .dash-nav-right a:hover { color: var(--gold); }
 
-    /* MAIN */
     .program-main { padding: 100px 40px 60px; max-width: 1100px; margin: 0 auto; }
 
-    /* PAGE HEADER */
     .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .page-eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
     .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: var(--white); line-height: 1.05; }
     .page-header h1 em { color: var(--gold); font-style: italic; }
     .page-header p { font-size: 14px; color: rgba(255,255,255,0.3); font-weight: 300; margin-top: 12px; }
 
-    /* LAYOUT */
     .program-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); }
 
-    /* LEFT — trust panel */
     .trust-panel { background: #141414; padding: 48px; display: flex; flex-direction: column; gap: 40px; }
-
     .trust-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); line-height: 1.2; }
     .trust-title em { color: var(--gold); font-style: italic; }
-
     .trust-list { display: flex; flex-direction: column; gap: 20px; }
     .trust-item { display: flex; align-items: flex-start; gap: 16px; }
     .trust-icon { width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; color: var(--gold); }
-    .trust-text { }
     .trust-text strong { display: block; font-size: 13px; color: var(--white); font-weight: 500; margin-bottom: 4px; }
     .trust-text span { font-size: 12px; color: rgba(255,255,255,0.25); font-weight: 300; line-height: 1.5; }
-
     .philosophy-box { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.1); padding: 24px; margin-top: auto; }
     .philosophy-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
     .philosophy-text { font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.25); font-weight: 300; }
 
-    /* RIGHT — form */
     .form-panel { background: #0a0a0a; padding: 48px; }
 
-    /* Step indicator */
     .step-bar { display: flex; gap: 6px; margin-bottom: 36px; }
     .step-bar-dot { height: 2px; flex: 1; background: rgba(255,255,255,0.08); transition: background 0.3s; }
     .step-bar-dot.active { background: var(--gold); }
@@ -70,7 +59,6 @@
     .step-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--white); margin-bottom: 24px; }
     .step-title em { color: var(--gold); font-style: italic; }
 
-    /* Field styles */
     .field-group { margin-bottom: 20px; }
     .field-group label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 10px; font-weight: 500; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -86,14 +74,8 @@
     input:focus, textarea:focus { border-color: var(--gold); background: rgba(201,168,76,0.03); }
     input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.15); }
 
-    /* Option cards */
     .opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .opt-card {
-      padding: 16px 12px; border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.02);
-      cursor: pointer; transition: all 0.2s; text-align: center;
-      position: relative;
-    }
+    .opt-card { padding: 16px 12px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.02); cursor: pointer; transition: all 0.2s; text-align: center; position: relative; }
     .opt-card input[type="radio"] { display: none; }
     .opt-card:hover { border-color: rgba(201,168,76,0.3); background: rgba(255,255,255,0.04); }
     .opt-card.selected { border-color: var(--gold); background: rgba(201,168,76,0.07); }
@@ -102,26 +84,14 @@
     .opt-card.selected .opt-label { color: var(--gold); }
     .opt-sub { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 3px; font-weight: 300; }
 
-    /* Nav buttons */
     .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
     .step-counter { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
 
-    .btn-next {
-      background: var(--gold); color: var(--black); border: none;
-      padding: 14px 32px; font-family: 'DM Sans', sans-serif;
-      font-size: 11px; font-weight: 500; letter-spacing: 2px;
-      text-transform: uppercase; cursor: pointer; transition: background 0.2s;
-    }
+    .btn-next { background: var(--gold); color: var(--black); border: none; padding: 14px 32px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
     .btn-next:hover { background: var(--gold-light); }
-
-    .btn-back {
-      background: none; border: none; font-family: 'DM Sans', sans-serif;
-      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(255,255,255,0.25); cursor: pointer; transition: color 0.2s; padding: 14px 0;
-    }
+    .btn-back { background: none; border: none; font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); cursor: pointer; transition: color 0.2s; padding: 14px 0; }
     .btn-back:hover { color: var(--white); }
 
-    /* LOADING */
     .program-loading { display: none; text-align: center; padding: 60px 20px; }
     .program-loading.active { display: block; }
     .loading-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 8px; }
@@ -133,42 +103,25 @@
     .loading-msg { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); animation: pulse 1.5s ease infinite; }
     @keyframes pulse { 0%,100%{opacity:0.2} 50%{opacity:1} }
 
-    /* RESULT */
     .result-panel { display: none; }
     .result-panel.active { display: block; }
-
-    .result-header {
-      background: var(--black); padding: 32px;
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      position: relative; overflow: hidden;
-    }
-    .result-header::after {
-      content: 'PHYSIQ'; position: absolute; right: -10px; top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Bebas Neue', sans-serif; font-size: 80px;
-      color: rgba(255,255,255,0.03); letter-spacing: 4px; pointer-events: none;
-    }
+    .result-header { background: var(--black); padding: 32px; border-bottom: 1px solid rgba(201,168,76,0.15); position: relative; overflow: hidden; }
+    .result-header::after { content: 'PHYSIQ'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: rgba(255,255,255,0.03); letter-spacing: 4px; pointer-events: none; }
     .result-tag { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; font-weight: 500; }
     .result-title-text { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); }
-
     .result-body { padding: 32px; }
-
     .week-block { margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; }
     .week-header { background: rgba(255,255,255,0.03); padding: 10px 18px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--gold); border-bottom: 1px solid rgba(255,255,255,0.05); }
     .week-content { padding: 16px 18px; font-size: 13px; line-height: 1.85; color: rgba(255,255,255,0.4); font-weight: 300; }
-
     .result-prose { margin-bottom: 14px; font-size: 14px; line-height: 1.85; color: rgba(255,255,255,0.4); font-weight: 300; }
-
     .result-cta { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.12); padding: 24px; margin-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .result-cta p { font-size: 13px; color: rgba(255,255,255,0.3); font-weight: 300; }
     .result-cta p strong { color: var(--white); font-weight: 500; display: block; margin-bottom: 4px; }
-
     .btn-gold { background: var(--gold); color: var(--black); border: none; padding: 12px 24px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap; text-decoration: none; display: inline-block; }
     .btn-gold:hover { background: var(--gold-light); }
     .btn-outline-sm { background: none; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); padding: 12px 24px; font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .btn-outline-sm:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
 
-    /* Page loading */
     .page-loading { position: fixed; inset: 0; background: #0F0F0F; display: flex; align-items: center; justify-content: center; z-index: 999; flex-direction: column; gap: 20px; }
     .page-loading-logo { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 8px; color: var(--white); }
     .page-loading-logo span { color: var(--gold); }
@@ -211,7 +164,6 @@
 
   <div class="program-layout">
 
-    <!-- LEFT — trust panel -->
     <div class="trust-panel">
       <div class="trust-title">Built around <em>you.</em><br>Not a template.</div>
       <div class="trust-list">
@@ -250,10 +202,8 @@
       </div>
     </div>
 
-    <!-- RIGHT — form -->
     <div class="form-panel">
 
-      <!-- Step bar -->
       <div class="step-bar" id="stepBar">
         <div class="step-bar-dot active" id="dot0"></div>
         <div class="step-bar-dot" id="dot1"></div>
@@ -330,25 +280,25 @@
               <input type="radio" name="goal" value="bulk">
               <span class="opt-emoji">📦</span>
               <span class="opt-label">Build Size</span>
-              <span class="opt-sub">Add muscle mass</span>
+              <span class="opt-sub">3–8 reps · hypertrophy</span>
             </label>
             <label class="opt-card" onclick="selectOpt(this,'goal','cut')">
               <input type="radio" name="goal" value="cut">
               <span class="opt-emoji">🔥</span>
               <span class="opt-label">Get Lean</span>
-              <span class="opt-sub">Burn fat, stay strong</span>
+              <span class="opt-sub">8–10 reps · fat loss</span>
             </label>
             <label class="opt-card" onclick="selectOpt(this,'goal','aesthetic')">
               <input type="radio" name="goal" value="aesthetic">
               <span class="opt-emoji">🗿</span>
               <span class="opt-label">Aesthetic</span>
-              <span class="opt-sub">V-taper, proportion</span>
+              <span class="opt-sub">6–10 reps · proportion</span>
             </label>
             <label class="opt-card" onclick="selectOpt(this,'goal','strength')">
               <input type="radio" name="goal" value="strength">
               <span class="opt-emoji">⚡</span>
               <span class="opt-label">Raw Strength</span>
-              <span class="opt-sub">Get seriously strong</span>
+              <span class="opt-sub">3–8 reps · max power</span>
             </label>
           </div>
         </div>
@@ -578,11 +528,22 @@
     updateDots(currentStep);
   }
 
+  function getRepScheme(goal) {
+    const schemes = {
+      bulk:      { range: '3–8 reps', sets: '3–4 sets', focus: 'heavy compound movements with lower rep ranges to maximise muscle hypertrophy and strength gains' },
+      cut:       { range: '8–10 reps', sets: '2–3 sets', focus: 'moderate rep ranges to maintain muscle while in a caloric deficit, with shorter rest periods to increase calorie burn' },
+      aesthetic: { range: '6–10 reps', sets: '2–3 sets', focus: 'balanced rep ranges that build both size and definition, prioritising proportion, shoulder width to waist ratio, and V-taper' },
+      strength:  { range: '3–8 reps', sets: '2–3 sets', focus: 'heavy compound lifts with progressive overload, long rest periods, and maximal strength development' }
+    };
+    return schemes[goal] || schemes.aesthetic;
+  }
+
   function buildPrompt(data) {
     const ageNum = parseInt(data.age) || 16;
     const tone = ageNum <= 19 ? 'teenager who is new to serious training' : 'adult lifter focused on aesthetics';
+    const repScheme = getRepScheme(data.goal);
 
-    return `You are a strength and aesthetics coach. Create a personalized 12-week lifting program for this person:
+    return `You are a strength and aesthetics coach. Speak professionally and encouragingly. Create a personalized 12-week lifting program for this person:
 
 Name: ${data.name}
 Age: ${data.age}
@@ -596,6 +557,13 @@ Training Days/Week: ${data.days || '4'}
 Equipment: ${data.equipment || 'full gym'}
 Priority Muscle Group: ${data.focus || 'back and lats'}
 Additional Notes: ${data.notes || 'none'}
+
+REP AND SET SCHEME — CRITICAL:
+This person selected "${data.goal}" as their goal. You MUST use these exact rep and set ranges throughout the entire program:
+- Rep range: ${repScheme.range}
+- Sets: ${repScheme.sets}
+- Training focus: ${repScheme.focus}
+Do NOT deviate from these rep ranges. Every exercise listed must show sets x reps within this range.
 
 Programming rules:
 - Always prioritize compound movements first, accessories second.
@@ -613,10 +581,10 @@ Preferred exercises:
 Write a detailed 12-week program. Include:
 1. Personal intro addressing ${data.name} directly
 2. Weekly training split
-3. Week 1-4: key exercises with sets/reps
-4. Week 5-8: progression adjustments
-5. Week 9-12: intensity phase
-6. One key nutrition tip
+3. Week 1-4: key exercises with sets x reps (must be ${repScheme.range})
+4. Week 5-8: progression adjustments (still within ${repScheme.range})
+5. Week 9-12: intensity phase (still within ${repScheme.range})
+6. One key nutrition tip for their goal
 
 Be motivating and specific. Format with clear headers. ~400-500 words.`;
   }
