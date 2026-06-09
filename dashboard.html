@@ -63,11 +63,11 @@
 
     .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); margin-bottom: 48px; }
 
-    .feature-card { background: #141414; padding: 32px; position: relative; overflow: hidden; transition: background 0.2s; cursor: pointer; text-decoration: none; display: block; }
+    .feature-card { background: #141414; padding: 32px; position: relative; overflow: hidden; transition: background 0.2s; text-decoration: none; display: block; cursor: pointer; }
     .feature-card:hover:not(.locked) { background: #1a1a1a; }
     .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
     .feature-card:hover:not(.locked)::before { transform: scaleX(1); }
-    .feature-card.locked { cursor: default; opacity: 0.5; }
+    .feature-card.locked { cursor: default; opacity: 0.5; pointer-events: none; }
 
     .lock-overlay { position: absolute; top: 16px; right: 16px; font-size: 14px; opacity: 0.4; }
     .feature-icon { font-size: 28px; margin-bottom: 16px; display: block; }
@@ -196,6 +196,8 @@
   <div class="section-label">Your Tools</div>
   <div class="feature-grid" id="featureGrid">
 
+    <!-- All cards are <a> tags — locked ones have href="#" and pointer-events:none via .locked class -->
+
     <a href="program.html" class="feature-card" id="cardProgram">
       <span class="feature-icon">⚡</span>
       <div class="feature-name">Program Generator</div>
@@ -204,7 +206,7 @@
       <div class="feature-action">Generate Program →</div>
     </a>
 
-    <div class="feature-card locked" id="cardAnalyzer" onclick="promptUpgrade('analyzer')">
+    <a href="#" class="feature-card locked" id="cardAnalyzer">
       <div class="lock-overlay">🔒</div>
       <span class="feature-icon">📸</span>
       <div class="feature-name">Physique Analyzer</div>
@@ -217,39 +219,39 @@
         </div>
         <div class="usage-bar"><div class="usage-fill" id="analyzerFill" style="width:0%"></div></div>
       </div>
-    </div>
+    </a>
 
-    <div class="feature-card locked" id="cardMacro" onclick="promptUpgrade('macro')">
+    <a href="#" class="feature-card locked" id="cardMacro">
       <div class="lock-overlay">🔒</div>
       <span class="feature-icon">🥗</span>
       <div class="feature-name">Macro Calculator</div>
       <p class="feature-desc">Get your exact daily calories, protein, carbs and fats based on your goal and body.</p>
       <span class="feature-tag trial-only">Free Trial</span>
-    </div>
+    </a>
 
-    <div class="feature-card locked" id="cardTips" onclick="promptUpgrade('tips')">
+    <a href="#" class="feature-card locked" id="cardTips">
       <div class="lock-overlay">🔒</div>
       <span class="feature-icon">💡</span>
       <div class="feature-name">Tips Generator</div>
       <p class="feature-desc">Personalized training and nutrition tips generated for your specific situation.</p>
       <span class="feature-tag trial-only">Free Trial</span>
-    </div>
+    </a>
 
-    <div class="feature-card locked" id="cardProgress" onclick="promptUpgrade('progress')">
+    <a href="#" class="feature-card locked" id="cardProgress">
       <div class="lock-overlay">🔒</div>
       <span class="feature-icon">📈</span>
       <div class="feature-name">Progress Tracker</div>
       <p class="feature-desc">Upload progress photos over time and compare your transformation side by side.</p>
       <span class="feature-tag pro-only">Pro Plan</span>
-    </div>
+    </a>
 
-    <div class="feature-card locked" id="cardNutrition" onclick="promptUpgrade('nutrition')">
+    <a href="#" class="feature-card locked" id="cardNutrition">
       <div class="lock-overlay">🔒</div>
       <span class="feature-icon">🔬</span>
       <div class="feature-name">Phase Nutrition</div>
       <p class="feature-desc">Advanced bulk, cut, and recomp nutrition phases with weekly macro adjustments.</p>
       <span class="feature-tag pro-only">Pro Plan</span>
-    </div>
+    </a>
 
   </div>
 
@@ -283,7 +285,7 @@
           <li>Phase Nutrition Plans</li>
           <li>Everything in Base</li>
         </ul>
-       <button class="plan-btn gold" onclick="handleUpgrade('pro')">Get Pro</button>
+        <button class="plan-btn gold" onclick="handleUpgrade('pro')">Get Pro</button>
       </div>
     </div>
   </div>
@@ -360,10 +362,7 @@
   function unlock(cardId, href, tagClass, actionText) {
     const card = document.getElementById(cardId);
     card.classList.remove('locked');
-    card.setAttribute('href', href);
-    card.onclick = function() { window.location.href = href; };
-    card.style.cursor = 'pointer';
-  
+    card.href = href;
 
     const lockEl = card.querySelector('.lock-overlay');
     if (lockEl) lockEl.remove();
@@ -374,41 +373,38 @@
 
     const action = card.querySelector('.feature-action');
     if (action) action.textContent = actionText;
+    else {
+      const newAction = document.createElement('div');
+      newAction.className = 'feature-action';
+      newAction.textContent = actionText;
+      card.appendChild(newAction);
+    }
   }
 
-  function promptUpgrade(feature) {
-    const messages = {
-      analyzer: 'Physique Analysis is available on the Base plan ($9.99/mo).',
-      macro: 'The Macro Calculator unlocks during your free trial or on any paid plan.',
-      tips: 'The Tips Generator unlocks during your free trial or on any paid plan.',
-      progress: 'Progress Photo Tracking is a Pro-only feature ($19.99/mo).',
-      nutrition: 'Phase Nutrition Planning is a Pro-only feature ($19.99/mo).',
-    };
-    alert(messages[feature] || 'Upgrade to unlock this feature.');
-  }
-async function handleUpgrade(tier) {
-  const { data: { session } } = await db.auth.getSession();
-  if (!session) { window.location.href = 'login.html'; return; }
+  async function handleUpgrade(tier) {
+    const { data: { session } } = await db.auth.getSession();
+    if (!session) { window.location.href = 'login.html'; return; }
 
-  const response = await fetch('https://physiq-xotj.onrender.com/api/checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      tier: tier,
-      userId: session.user.id,
-      email: session.user.email,
-      successUrl: 'https://peaklifts75-lgtm.github.io/PHYSIQ/dashboard.html',
-      cancelUrl: 'https://peaklifts75-lgtm.github.io/PHYSIQ/dashboard.html'
-    })
-  });
+    const response = await fetch('https://physiq-xotj.onrender.com/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tier: tier,
+        userId: session.user.id,
+        email: session.user.email,
+        successUrl: 'https://physiq.site/dashboard.html',
+        cancelUrl: 'https://physiq.site/dashboard.html'
+      })
+    });
 
-  const data = await response.json();
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    alert('Something went wrong. Please try again.');
+    const data = await response.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
   }
-}
+
   async function handleLogout() {
     await db.auth.signOut();
     window.location.href = 'login.html';
