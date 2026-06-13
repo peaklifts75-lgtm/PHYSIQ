@@ -18,7 +18,12 @@ app.use(require('express').json({ limit: '20mb' }));
 const KEY = process.env.ANTHROPIC_API_KEY;
 console.log('Key loaded:', KEY ? 'YES - length ' + KEY.length : 'NO - undefined');
 
-const PRICES = {
+const TEST_MODE = process.env.STRIPE_TEST_MODE === 'true';
+
+const PRICES = TEST_MODE ? {
+  base: 'price_1TeOtKQkiY7QpEhHkpRFkAjb',
+  pro:  'price_1TeOtbQkiY7QpEhH7oKzNfkT'
+} : {
   base: 'price_1Te7OJQkiY7QpEhHmzl9u18M',
   pro:  'price_1Te7OhQkiY7QpEhHgDkMp1j9'
 };
