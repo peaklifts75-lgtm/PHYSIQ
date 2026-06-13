@@ -190,9 +190,13 @@
     .body-map-container svg { width: 100%; height: auto; display: block; }
 
     /* Photo overlay mode */
-    .body-bg-photo { width: 100%; display: none; object-fit: cover; object-position: top; }
-    .body-bg-photo.visible { display: block; }
-    .photo-mode #bodyMap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .body-bg-photo { display: none; }
+    .body-map-container.photo-mode {
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+    }
+    .photo-mode #bodyMap { width: 100%; height: auto; display: block; }
     .photo-mode .body-base { display: none; }
     .photo-mode .muscle-zone { stroke-width: 2; }
     .photo-mode .rating-strong { fill: rgba(201,168,76,0.25); stroke: rgba(201,168,76,0.9); }
@@ -480,7 +484,7 @@
         <!-- SVG Body Map -->
         <div class="body-map-container" id="bodyMapContainer">
           <img id="bodyBgPhoto" src="" alt="Your physique" class="body-bg-photo">
-          <svg id="bodyMap" viewBox="0 0 200 440" xmlns="http://www.w3.org/2000/svg">
+          <svg id="bodyMap" viewBox="0 0 200 440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
 
             <!-- === BODY SILHOUETTE BASE === -->
             <!-- Head -->
@@ -892,12 +896,14 @@ Return ONLY this exact JSON, no markdown, no extra text:
     // Color the SVG body map
     colorBodyMap(data.muscles || []);
 
-    // Show uploaded photo as background of body map
+    // Show uploaded photo as background of body map container
     if (imageBase64) {
-      const photo = document.getElementById('bodyBgPhoto');
-      photo.src = `data:image/jpeg;base64,${imageBase64}`;
-      photo.classList.add('visible');
-      document.getElementById('bodyMapContainer').classList.add('photo-mode');
+      const container = document.getElementById('bodyMapContainer');
+      container.style.backgroundImage = `url(data:image/jpeg;base64,${imageBase64})`;
+      container.classList.add('photo-mode');
+      console.log('Photo overlay activated via background-image');
+    } else {
+      console.log('No imageBase64 — photo overlay skipped');
     }
 
     // Action plan
@@ -991,9 +997,9 @@ Return ONLY this exact JSON, no markdown, no extra text:
   function resetAnalyzer() {
     analysisData = null;
     imageBase64 = null;
-    document.getElementById('bodyBgPhoto').classList.remove('visible');
-    document.getElementById('bodyBgPhoto').src = '';
-    document.getElementById('bodyMapContainer').classList.remove('photo-mode');
+    const container = document.getElementById('bodyMapContainer');
+    container.style.backgroundImage = '';
+    container.classList.remove('photo-mode');
     document.getElementById('resultsPanel').classList.remove('active');
     document.getElementById('uploadPreview').classList.remove('visible');
     document.getElementById('uploadPreview').src = '';
