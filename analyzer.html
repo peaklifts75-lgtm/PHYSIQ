@@ -483,93 +483,7 @@
 
         <!-- SVG Body Map -->
         <div class="body-map-container" id="bodyMapContainer">
-          <img id="bodyBgPhoto" src="" alt="Your physique" class="body-bg-photo">
-          <svg id="bodyMap" viewBox="0 0 200 440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-
-            <!-- === BODY SILHOUETTE BASE === -->
-            <!-- Head -->
-            <ellipse cx="100" cy="30" rx="22" ry="24" class="body-base"/>
-            <!-- Neck -->
-            <rect x="90" y="52" width="20" height="16" class="body-base"/>
-            <!-- Torso -->
-            <polygon points="42,68 158,68 148,175 52,175" class="body-base"/>
-            <!-- Pelvis/Hip transition -->
-            <ellipse cx="100" cy="178" rx="50" ry="14" class="body-base"/>
-            <!-- Left upper arm -->
-            <ellipse cx="28" cy="112" rx="12" ry="40" class="body-base" transform="rotate(-6,28,90)"/>
-            <!-- Right upper arm -->
-            <ellipse cx="172" cy="112" rx="12" ry="40" class="body-base" transform="rotate(6,172,90)"/>
-            <!-- Left forearm -->
-            <ellipse cx="22" cy="170" rx="9" ry="32" class="body-base"/>
-            <!-- Right forearm -->
-            <ellipse cx="178" cy="170" rx="9" ry="32" class="body-base"/>
-            <!-- Left thigh -->
-            <ellipse cx="78" cy="232" rx="22" ry="40" class="body-base"/>
-            <!-- Right thigh -->
-            <ellipse cx="122" cy="232" rx="22" ry="40" class="body-base"/>
-            <!-- Left lower leg -->
-            <ellipse cx="74" cy="318" rx="14" ry="38" class="body-base"/>
-            <!-- Right lower leg -->
-            <ellipse cx="126" cy="318" rx="14" ry="38" class="body-base"/>
-            <!-- Left foot -->
-            <ellipse cx="70" cy="390" rx="16" ry="8" class="body-base"/>
-            <!-- Right foot -->
-            <ellipse cx="130" cy="390" rx="16" ry="8" class="body-base"/>
-
-            <!-- === MUSCLE ZONES (interactive) === -->
-
-            <!-- TRAPS (maps to back) -->
-            <path data-muscle="back" d="M 90,54 Q 100,48 110,54 L 148,70 Q 100,80 52,70 Z" class="muscle-zone"/>
-
-            <!-- CHEST - Left Pec -->
-            <ellipse data-muscle="chest" cx="80" cy="95" rx="20" ry="16" class="muscle-zone"/>
-            <!-- CHEST - Right Pec -->
-            <ellipse data-muscle="chest" cx="120" cy="95" rx="20" ry="16" class="muscle-zone"/>
-
-            <!-- SHOULDERS - Left Front Delt -->
-            <ellipse data-muscle="shoulders" cx="42" cy="80" rx="14" ry="13" class="muscle-zone"/>
-            <!-- SHOULDERS - Right Front Delt -->
-            <ellipse data-muscle="shoulders" cx="158" cy="80" rx="14" ry="13" class="muscle-zone"/>
-
-            <!-- ARMS - Left Bicep -->
-            <ellipse data-muscle="arms" cx="26" cy="110" rx="10" ry="22" class="muscle-zone"/>
-            <!-- ARMS - Right Bicep -->
-            <ellipse data-muscle="arms" cx="174" cy="110" rx="10" ry="22" class="muscle-zone"/>
-            <!-- ARMS - Left Forearm -->
-            <ellipse data-muscle="arms" cx="21" cy="168" rx="8" ry="20" class="muscle-zone"/>
-            <!-- ARMS - Right Forearm -->
-            <ellipse data-muscle="arms" cx="179" cy="168" rx="8" ry="20" class="muscle-zone"/>
-
-            <!-- CORE - Abs (6 pack grid) -->
-            <!-- Left column -->
-            <rect data-muscle="core" x="82" y="115" width="13" height="11" rx="2" class="muscle-zone"/>
-            <rect data-muscle="core" x="82" y="128" width="13" height="11" rx="2" class="muscle-zone"/>
-            <rect data-muscle="core" x="82" y="141" width="13" height="11" rx="2" class="muscle-zone"/>
-            <!-- Right column -->
-            <rect data-muscle="core" x="97" y="115" width="13" height="11" rx="2" class="muscle-zone"/>
-            <rect data-muscle="core" x="97" y="128" width="13" height="11" rx="2" class="muscle-zone"/>
-            <rect data-muscle="core" x="97" y="141" width="13" height="11" rx="2" class="muscle-zone"/>
-            <!-- Obliques -->
-            <ellipse data-muscle="core" cx="68" cy="138" rx="9" ry="20" class="muscle-zone"/>
-            <ellipse data-muscle="core" cx="132" cy="138" rx="9" ry="20" class="muscle-zone"/>
-
-            <!-- LEGS - Left Quad -->
-            <ellipse data-muscle="legs" cx="78" cy="228" rx="19" ry="36" class="muscle-zone"/>
-            <!-- LEGS - Right Quad -->
-            <ellipse data-muscle="legs" cx="122" cy="228" rx="19" ry="36" class="muscle-zone"/>
-            <!-- LEGS - Left Calf -->
-            <ellipse data-muscle="legs" cx="74" cy="316" rx="11" ry="26" class="muscle-zone"/>
-            <!-- LEGS - Right Calf -->
-            <ellipse data-muscle="legs" cx="126" cy="316" rx="11" ry="26" class="muscle-zone"/>
-
-            <!-- Muscle labels (small, subtle) -->
-            <text x="100" y="64" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.2)" font-family="DM Sans, sans-serif" letter-spacing="1">TRAPS</text>
-            <text x="80" y="99" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.2)" font-family="DM Sans, sans-serif" letter-spacing="1">CHEST</text>
-            <text x="42" y="84" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.2)" font-family="DM Sans, sans-serif" letter-spacing="0.5">DELTS</text>
-            <text x="26" y="114" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.2)" font-family="DM Sans, sans-serif" letter-spacing="0.5">ARMS</text>
-            <text x="100" y="136" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.2)" font-family="DM Sans, sans-serif" letter-spacing="0.5">CORE</text>
-            <text x="78" y="232" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.2)" font-family="DM Sans, sans-serif" letter-spacing="0.5">LEGS</text>
-          </svg>
+          <div id="svgContainer"></div>
 
           <div class="map-legend">
             <div class="legend-item"><div class="legend-dot strong"></div>Strong</div>
@@ -893,6 +807,9 @@ Return ONLY this exact JSON, no markdown, no extra text:
       });
     }, 100);
 
+    // Inject the right SVG for the selected focus area
+    injectBodyMap(selectedFocus);
+
     // Color the SVG body map
     colorBodyMap(data.muscles || []);
 
@@ -901,9 +818,6 @@ Return ONLY this exact JSON, no markdown, no extra text:
       const container = document.getElementById('bodyMapContainer');
       container.style.backgroundImage = `url(data:image/jpeg;base64,${imageBase64})`;
       container.classList.add('photo-mode');
-      console.log('Photo overlay activated via background-image');
-    } else {
-      console.log('No imageBase64 — photo overlay skipped');
     }
 
     // Action plan
@@ -1014,6 +928,143 @@ Return ONLY this exact JSON, no markdown, no extra text:
     document.getElementById('detailEmpty').style.display = 'block';
     document.getElementById('detailContent').classList.remove('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ============================================
+  // SVG TEMPLATES PER FOCUS AREA
+  // ============================================
+  const LABEL_STYLE = 'font-size="6" fill="rgba(255,255,255,0.25)" font-family="DM Sans, sans-serif" letter-spacing="1"';
+
+  const SVG_FULL = `<svg id="bodyMap" viewBox="0 0 200 440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="30" rx="22" ry="24" class="body-base"/>
+    <rect x="90" y="52" width="20" height="16" class="body-base"/>
+    <polygon points="42,68 158,68 148,175 52,175" class="body-base"/>
+    <ellipse cx="100" cy="178" rx="50" ry="14" class="body-base"/>
+    <ellipse cx="28" cy="112" rx="12" ry="40" class="body-base" transform="rotate(-6,28,90)"/>
+    <ellipse cx="172" cy="112" rx="12" ry="40" class="body-base" transform="rotate(6,172,90)"/>
+    <ellipse cx="22" cy="170" rx="9" ry="32" class="body-base"/>
+    <ellipse cx="178" cy="170" rx="9" ry="32" class="body-base"/>
+    <ellipse cx="78" cy="232" rx="22" ry="40" class="body-base"/>
+    <ellipse cx="122" cy="232" rx="22" ry="40" class="body-base"/>
+    <ellipse cx="74" cy="318" rx="14" ry="38" class="body-base"/>
+    <ellipse cx="126" cy="318" rx="14" ry="38" class="body-base"/>
+    <ellipse cx="70" cy="390" rx="16" ry="8" class="body-base"/>
+    <ellipse cx="130" cy="390" rx="16" ry="8" class="body-base"/>
+    <path data-muscle="back" d="M 90,54 Q 100,48 110,54 L 148,70 Q 100,80 52,70 Z" class="muscle-zone"/>
+    <ellipse data-muscle="chest" cx="80" cy="95" rx="20" ry="16" class="muscle-zone"/>
+    <ellipse data-muscle="chest" cx="120" cy="95" rx="20" ry="16" class="muscle-zone"/>
+    <ellipse data-muscle="shoulders" cx="42" cy="80" rx="14" ry="13" class="muscle-zone"/>
+    <ellipse data-muscle="shoulders" cx="158" cy="80" rx="14" ry="13" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="26" cy="110" rx="10" ry="22" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="174" cy="110" rx="10" ry="22" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="21" cy="168" rx="8" ry="20" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="179" cy="168" rx="8" ry="20" class="muscle-zone"/>
+    <rect data-muscle="core" x="82" y="115" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="82" y="128" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="82" y="141" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="115" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="128" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="141" width="13" height="11" rx="2" class="muscle-zone"/>
+    <ellipse data-muscle="core" cx="68" cy="138" rx="9" ry="20" class="muscle-zone"/>
+    <ellipse data-muscle="core" cx="132" cy="138" rx="9" ry="20" class="muscle-zone"/>
+    <ellipse data-muscle="legs" cx="78" cy="228" rx="19" ry="36" class="muscle-zone"/>
+    <ellipse data-muscle="legs" cx="122" cy="228" rx="19" ry="36" class="muscle-zone"/>
+    <ellipse data-muscle="legs" cx="74" cy="316" rx="11" ry="26" class="muscle-zone"/>
+    <ellipse data-muscle="legs" cx="126" cy="316" rx="11" ry="26" class="muscle-zone"/>
+    <text x="100" y="64" text-anchor="middle" ${LABEL_STYLE}>TRAPS</text>
+    <text x="80" y="99" text-anchor="middle" ${LABEL_STYLE}>CHEST</text>
+    <text x="42" y="84" text-anchor="middle" ${LABEL_STYLE}>DELTS</text>
+    <text x="26" y="114" text-anchor="middle" ${LABEL_STYLE}>ARMS</text>
+    <text x="100" y="136" text-anchor="middle" ${LABEL_STYLE}>CORE</text>
+    <text x="78" y="232" text-anchor="middle" ${LABEL_STYLE}>QUADS</text>
+    <text x="78" y="318" text-anchor="middle" ${LABEL_STYLE}>CALVES</text>
+  </svg>`;
+
+  const SVG_UPPER = `<svg id="bodyMap" viewBox="0 0 200 310" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="30" rx="22" ry="24" class="body-base"/>
+    <rect x="90" y="52" width="20" height="16" class="body-base"/>
+    <polygon points="42,68 158,68 148,185 52,185" class="body-base"/>
+    <ellipse cx="28" cy="112" rx="12" ry="40" class="body-base" transform="rotate(-6,28,90)"/>
+    <ellipse cx="172" cy="112" rx="12" ry="40" class="body-base" transform="rotate(6,172,90)"/>
+    <ellipse cx="22" cy="170" rx="9" ry="32" class="body-base"/>
+    <ellipse cx="178" cy="170" rx="9" ry="32" class="body-base"/>
+    <ellipse cx="22" cy="210" rx="8" ry="20" class="body-base"/>
+    <ellipse cx="178" cy="210" rx="8" ry="20" class="body-base"/>
+    <path data-muscle="back" d="M 90,54 Q 100,48 110,54 L 148,70 Q 100,80 52,70 Z" class="muscle-zone"/>
+    <ellipse data-muscle="chest" cx="80" cy="95" rx="20" ry="16" class="muscle-zone"/>
+    <ellipse data-muscle="chest" cx="120" cy="95" rx="20" ry="16" class="muscle-zone"/>
+    <ellipse data-muscle="shoulders" cx="42" cy="80" rx="14" ry="13" class="muscle-zone"/>
+    <ellipse data-muscle="shoulders" cx="158" cy="80" rx="14" ry="13" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="26" cy="110" rx="10" ry="22" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="174" cy="110" rx="10" ry="22" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="21" cy="168" rx="8" ry="20" class="muscle-zone"/>
+    <ellipse data-muscle="arms" cx="179" cy="168" rx="8" ry="20" class="muscle-zone"/>
+    <rect data-muscle="core" x="82" y="115" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="82" y="128" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="82" y="141" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="115" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="128" width="13" height="11" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="141" width="13" height="11" rx="2" class="muscle-zone"/>
+    <ellipse data-muscle="core" cx="68" cy="138" rx="9" ry="20" class="muscle-zone"/>
+    <ellipse data-muscle="core" cx="132" cy="138" rx="9" ry="20" class="muscle-zone"/>
+    <text x="100" y="64" text-anchor="middle" ${LABEL_STYLE}>TRAPS</text>
+    <text x="80" y="99" text-anchor="middle" ${LABEL_STYLE}>CHEST</text>
+    <text x="42" y="84" text-anchor="middle" ${LABEL_STYLE}>DELTS</text>
+    <text x="26" y="114" text-anchor="middle" ${LABEL_STYLE}>ARMS</text>
+    <text x="100" y="136" text-anchor="middle" ${LABEL_STYLE}>CORE</text>
+  </svg>`;
+
+  const SVG_LOWER = `<svg id="bodyMap" viewBox="0 0 200 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="20" rx="54" ry="20" class="body-base"/>
+    <ellipse cx="78" cy="100" rx="24" ry="55" class="body-base"/>
+    <ellipse cx="122" cy="100" rx="24" ry="55" class="body-base"/>
+    <ellipse cx="74" cy="200" rx="15" ry="45" class="body-base"/>
+    <ellipse cx="126" cy="200" rx="15" ry="45" class="body-base"/>
+    <ellipse cx="70" cy="270" rx="16" ry="8" class="body-base"/>
+    <ellipse cx="130" cy="270" rx="16" ry="8" class="body-base"/>
+    <ellipse data-muscle="legs" cx="78" cy="95" rx="19" ry="48" class="muscle-zone"/>
+    <ellipse data-muscle="legs" cx="122" cy="95" rx="19" ry="48" class="muscle-zone"/>
+    <ellipse data-muscle="legs" cx="74" cy="198" rx="11" ry="30" class="muscle-zone"/>
+    <ellipse data-muscle="legs" cx="126" cy="198" rx="11" ry="30" class="muscle-zone"/>
+    <text x="78" y="100" text-anchor="middle" ${LABEL_STYLE}>QUADS</text>
+    <text x="78" y="200" text-anchor="middle" ${LABEL_STYLE}>CALVES</text>
+  </svg>`;
+
+  const SVG_CORE = `<svg id="bodyMap" viewBox="0 0 200 230" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,10 150,10 142,130 58,130" class="body-base"/>
+    <ellipse cx="38" cy="55" rx="14" ry="38" class="body-base"/>
+    <ellipse cx="162" cy="55" rx="14" ry="38" class="body-base"/>
+    <ellipse cx="100" cy="135" rx="46" ry="16" class="body-base"/>
+    <ellipse cx="38" cy="100" rx="10" ry="24" class="body-base"/>
+    <ellipse cx="162" cy="100" rx="10" ry="24" class="body-base"/>
+    <path data-muscle="back" d="M 88,12 Q 100,6 112,12 L 140,26 Q 100,34 60,26 Z" class="muscle-zone"/>
+    <ellipse data-muscle="chest" cx="80" cy="40" rx="20" ry="16" class="muscle-zone"/>
+    <ellipse data-muscle="chest" cx="120" cy="40" rx="20" ry="16" class="muscle-zone"/>
+    <rect data-muscle="core" x="80" y="64" width="15" height="13" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="80" y="79" width="15" height="13" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="80" y="94" width="15" height="13" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="80" y="109" width="15" height="13" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="64" width="15" height="13" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="79" width="15" height="13" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="94" width="15" height="13" rx="2" class="muscle-zone"/>
+    <rect data-muscle="core" x="97" y="109" width="15" height="13" rx="2" class="muscle-zone"/>
+    <ellipse data-muscle="core" cx="62" cy="95" rx="14" ry="38" class="muscle-zone"/>
+    <ellipse data-muscle="core" cx="138" cy="95" rx="14" ry="38" class="muscle-zone"/>
+    <text x="80" y="44" text-anchor="middle" ${LABEL_STYLE}>CHEST</text>
+    <text x="100" y="95" text-anchor="middle" ${LABEL_STYLE}>ABS</text>
+    <text x="62" y="99" text-anchor="middle" ${LABEL_STYLE}>OBL</text>
+  </svg>`;
+
+  const SVG_MAP = {
+    'Full Body': SVG_FULL,
+    'Upper Body': SVG_UPPER,
+    'Lower Body': SVG_LOWER,
+    'Core': SVG_CORE
+  };
+
+  function injectBodyMap(focus) {
+    const container = document.getElementById('svgContainer');
+    container.innerHTML = SVG_MAP[focus] || SVG_FULL;
   }
 
   initPage();
