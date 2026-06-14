@@ -141,7 +141,11 @@ app.post('/api/webhook', require('express').raw({ type: 'application/json' }), a
 });
 
 app.get('/', function(req, res) { res.send('PHYSIQ Server running.'); });
-
+// Keep Render server alive — ping every 14 minutes
+setInterval(() => {
+  const https = require('https');
+  https.get('https://physiq-xotj.onrender.com').on('error', () => {});
+}, 14 * 60 * 1000);
 app.listen(process.env.PORT || 3000, function() {
   console.log('PHYSIQ alive on ' + (process.env.PORT || 3000));
 });

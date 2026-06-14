@@ -78,179 +78,133 @@
     .analyzing-msg { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); animation: pulse 1.5s ease infinite; }
     @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
-    /* ============================================
-       NEW PREMIUM RESULTS
-       ============================================ */
+    /* RESULTS */
     .results-panel { display: none; }
     .results-panel.active { display: block; }
 
-    /* HERO — Score + Potential + Tier + Body Fat */
+    /* HERO */
     .results-hero {
-      background: #141414;
-      border: 1px solid rgba(201,168,76,0.15);
-      padding: 48px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 60px;
-      align-items: center;
-      margin-bottom: 1px;
-      position: relative;
-      overflow: hidden;
+      background: #141414; border: 1px solid rgba(201,168,76,0.15);
+      padding: 48px; display: grid; grid-template-columns: auto 1fr;
+      gap: 60px; align-items: center; margin-bottom: 1px;
+      position: relative; overflow: hidden;
     }
     .results-hero::before {
-      content: 'PHYSIQ';
-      position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+      content: 'PHYSIQ'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
       font-family: 'Bebas Neue', sans-serif; font-size: 140px;
       color: rgba(201,168,76,0.03); letter-spacing: 8px; pointer-events: none;
     }
-
     .hero-scores { display: flex; align-items: center; gap: 24px; }
-
     .score-block { text-align: center; }
     .score-ring-hero {
-      width: 110px; height: 110px;
-      border: 2px solid rgba(201,168,76,0.25);
-      border-radius: 50%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      position: relative; margin-bottom: 10px;
+      width: 110px; height: 110px; border: 2px solid rgba(201,168,76,0.25);
+      border-radius: 50%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; position: relative; margin-bottom: 10px;
     }
-    .score-ring-hero::before {
-      content: ''; position: absolute; inset: 6px;
-      border-radius: 50%; border: 1px solid rgba(201,168,76,0.08);
-    }
+    .score-ring-hero::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.08); }
     .score-ring-hero.potential { border-color: rgba(255,255,255,0.1); }
     .score-ring-hero.potential::before { border-color: rgba(255,255,255,0.04); }
-
     .score-big { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--gold); letter-spacing: 2px; line-height: 1; }
     .score-ring-hero.potential .score-big { color: rgba(255,255,255,0.4); }
     .score-sub { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); }
     .score-desc { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.25); }
-
     .score-arrow { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: rgba(201,168,76,0.3); }
-
-    .hero-meta { }
-    .tier-display {
-      display: inline-block;
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      padding: 6px 18px; font-weight: 500; margin-bottom: 20px;
-    }
+    .tier-display { display: inline-block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; padding: 6px 18px; font-weight: 500; margin-bottom: 20px; }
     .tier-beginner { background: rgba(150,150,170,0.15); color: rgba(180,180,200,0.8); }
     .tier-novice { background: rgba(100,160,220,0.12); color: rgba(120,180,240,0.8); }
     .tier-intermediate { background: rgba(201,168,76,0.12); color: var(--gold); }
     .tier-advanced { background: rgba(220,140,50,0.15); color: rgba(240,160,70,0.9); }
     .tier-elite { background: var(--gold); color: var(--black); }
-
     .hero-stats { display: flex; gap: 32px; margin-bottom: 20px; }
-    .hero-stat { }
     .hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: 1px; display: block; line-height: 1; }
     .hero-stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-top: 4px; display: block; }
-
     .hero-assessment { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.4); font-weight: 300; max-width: 500px; }
 
     /* PILLARS */
-    .pillars-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.04);
-      border-top: none; margin-bottom: 1px;
-    }
-
+    .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); border-top: none; margin-bottom: 1px; }
     .pillar-card { background: #0a0a0a; padding: 28px; transition: background 0.2s; }
     .pillar-card:hover { background: #141414; }
-
     .pillar-icon { font-size: 24px; margin-bottom: 12px; display: block; }
     .pillar-name { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; font-weight: 500; }
-
     .pillar-score-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
     .pillar-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold); letter-spacing: 1px; }
     .pillar-max { font-size: 12px; color: rgba(255,255,255,0.15); }
-
     .pillar-bar { height: 2px; background: rgba(255,255,255,0.05); overflow: hidden; margin-bottom: 16px; }
     .pillar-fill { height: 100%; background: linear-gradient(90deg, rgba(201,168,76,0.4), var(--gold)); transition: width 1.2s ease; }
-
     .pillar-insight { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.25); font-weight: 300; }
 
     /* BODY MAP SECTION */
     .body-analysis-section {
-      background: #141414;
-      border: 1px solid rgba(255,255,255,0.04);
-      border-top: none;
-      padding: 48px;
-      margin-bottom: 1px;
+      background: #141414; border: 1px solid rgba(255,255,255,0.04);
+      border-top: none; padding: 48px; margin-bottom: 1px;
     }
-
     .section-eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }
     .section-eyebrow::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.05); }
 
-    .body-analysis-layout { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+    /* SIDE BY SIDE: photo + SVG */
+    .body-visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 32px;
+    }
 
-    /* SVG Body Map */
-    .body-map-container { position: relative; overflow: hidden; background: #0a0a0a; }
+    /* Photo panel */
+    .result-photo-panel {
+      background: #0a0a0a;
+      display: none;
+      overflow: hidden;
+    }
+    .result-photo-panel.visible { display: block; }
+    .result-photo-label {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.2); padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .result-photo-panel img {
+      width: 100%; height: auto; display: block; object-fit: cover;
+    }
+
+    /* SVG panel */
+    .body-map-container { background: #0a0a0a; position: relative; }
+    .body-map-label {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.2); padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
     .body-map-container svg { width: 100%; height: auto; display: block; }
-
-    /* Photo overlay mode */
-    .body-bg-photo { display: none; }
-    .body-map-container.photo-mode {
-      background-size: cover;
-      background-position: top center;
-      background-repeat: no-repeat;
-    }
-    .photo-mode #bodyMap { width: 100%; height: auto; display: block; }
-    .photo-mode .body-base { display: none; }
-    .photo-mode .muscle-zone { stroke-width: 2; }
-    .photo-mode .rating-strong { fill: rgba(201,168,76,0.25); stroke: rgba(201,168,76,0.9); }
-    .photo-mode .rating-average { fill: rgba(140,140,160,0.2); stroke: rgba(180,180,200,0.7); }
-    .photo-mode .rating-weak { fill: rgba(200,60,60,0.25); stroke: rgba(220,80,80,0.9); }
-    .photo-mode .muscle-zone.selected.rating-strong { fill: rgba(201,168,76,0.45); }
-    .photo-mode .muscle-zone.selected.rating-weak { fill: rgba(200,60,60,0.45); }
-
-    /* Body base shapes */
     .body-base { fill: #1e1e1e; stroke: rgba(255,255,255,0.06); stroke-width: 1; }
-
-    /* Muscle zones */
-    .muscle-zone {
-      cursor: pointer;
-      transition: all 0.2s;
-      stroke-width: 1.5;
-    }
+    .muscle-zone { cursor: pointer; transition: all 0.2s; stroke-width: 1.5; }
     .muscle-zone:hover { opacity: 0.85; }
-
-    /* Rating colors */
     .rating-strong { fill: rgba(201,168,76,0.35); stroke: rgba(201,168,76,0.8); }
     .rating-average { fill: rgba(140,140,160,0.25); stroke: rgba(160,160,180,0.5); }
     .rating-weak { fill: rgba(200,60,60,0.3); stroke: rgba(220,80,80,0.7); }
-
-    /* Selected state */
     .muscle-zone.selected.rating-strong { fill: rgba(201,168,76,0.6); stroke: var(--gold); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(201,168,76,0.6)); }
     .muscle-zone.selected.rating-average { fill: rgba(140,140,160,0.5); stroke: rgba(180,180,200,0.9); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(160,160,180,0.5)); }
     .muscle-zone.selected.rating-weak { fill: rgba(200,60,60,0.55); stroke: rgba(230,90,90,0.9); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(220,70,70,0.6)); }
 
-    /* Map legend */
-    .map-legend { display: flex; gap: 16px; margin-top: 20px; justify-content: center; }
+    .map-legend { display: flex; gap: 16px; padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.04); }
     .legend-item { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.3); }
-    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .legend-dot.strong { background: rgba(201,168,76,0.7); }
     .legend-dot.average { background: rgba(160,160,180,0.6); }
     .legend-dot.weak { background: rgba(220,80,80,0.7); }
 
-    /* Muscle Detail Panel */
+    /* DETAIL PANEL — full width below visual grid */
     .muscle-detail-panel { }
-
     .detail-empty { padding: 40px; text-align: center; border: 1px dashed rgba(255,255,255,0.06); }
     .detail-empty-icon { font-size: 32px; opacity: 0.2; margin-bottom: 12px; }
     .detail-empty-text { font-size: 13px; color: rgba(255,255,255,0.2); font-weight: 300; }
-
     .detail-content { display: none; }
-    .detail-content.active { display: block; }
-
-    .detail-header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .detail-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .detail-header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); grid-column: 1 / -1; }
     .detail-muscle-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--white); margin-bottom: 10px; }
     .detail-rating-badge { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; font-weight: 500; display: inline-block; }
     .detail-rating-badge.strong { background: rgba(201,168,76,0.15); color: var(--gold); }
     .detail-rating-badge.average { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
     .detail-rating-badge.weak { background: rgba(200,60,60,0.12); color: rgba(220,120,120,0.8); }
-
     .detail-score-section { margin-bottom: 24px; }
     .detail-score-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .detail-score-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); }
@@ -260,14 +214,10 @@
     .detail-fill.strong { background: linear-gradient(90deg, rgba(201,168,76,0.5), var(--gold)); }
     .detail-fill.average { background: linear-gradient(90deg, rgba(120,120,140,0.5), rgba(160,160,180,0.8)); }
     .detail-fill.weak { background: linear-gradient(90deg, rgba(180,50,50,0.5), rgba(220,80,80,0.8)); }
-
     .detail-note { font-size: 14px; line-height: 1.85; color: rgba(255,255,255,0.5); font-weight: 300; margin-bottom: 24px; }
-
     .detail-priority-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
     .detail-priority { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.35); font-weight: 300; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.1); padding: 16px 20px; }
-
-    /* All muscles list */
-    .muscles-overview { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .muscles-overview { }
     .muscles-overview-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 16px; }
     .muscle-list { display: flex; flex-direction: column; gap: 10px; }
     .muscle-list-item { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 8px 12px; transition: background 0.2s; }
@@ -281,13 +231,7 @@
     .muscle-list-badge.weak { background: rgba(200,60,60,0.1); color: rgba(220,120,120,0.7); }
 
     /* ACTION PLAN */
-    .action-plan-section {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.04);
-      border-top: none; margin-bottom: 24px;
-    }
-
+    .action-plan-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); border-top: none; margin-bottom: 24px; }
     .action-card { background: #0a0a0a; padding: 36px; }
     .action-card-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
     .action-card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--white); margin-bottom: 16px; }
@@ -302,7 +246,6 @@
     .btn-gold:hover { background: var(--gold-light); }
     .btn-outline-white { background: none; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.4); padding: 14px 28px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .btn-outline-white:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
-
     .disclaimer { font-size: 11px; color: rgba(255,255,255,0.15); font-weight: 300; text-align: center; margin-top: 24px; line-height: 1.6; }
 
     /* PAGE LOADING */
@@ -327,7 +270,8 @@
       .upload-grid { grid-template-columns: 1fr; }
       .results-hero { grid-template-columns: 1fr; gap: 32px; }
       .pillars-grid { grid-template-columns: 1fr 1fr; }
-      .body-analysis-layout { grid-template-columns: 1fr; }
+      .body-visual-grid { grid-template-columns: 1fr; }
+      .detail-content.active { grid-template-columns: 1fr; }
       .action-plan-section { grid-template-columns: 1fr; }
       .results-cta { flex-direction: column; }
       .cta-btns { flex-direction: column; width: 100%; }
@@ -374,9 +318,8 @@
     <div class="photo-tips-title">For best results</div>
     <div class="photo-tips-list">
       <span class="photo-tip">Good lighting — natural is best</span>
-      <span class="photo-tip">Front or side pose</span>
+      <span class="photo-tip">Front facing, full body in frame</span>
       <span class="photo-tip">Fitted clothing or shirtless</span>
-      <span class="photo-tip">Full body in frame</span>
       <span class="photo-tip">Photos never stored on our servers</span>
     </div>
   </div>
@@ -392,7 +335,6 @@
         <p class="upload-sub">Click to browse or drag & drop<br>JPG, PNG or WEBP · Max 10MB</p>
       </div>
     </div>
-
     <div class="options-panel">
       <div>
         <div class="options-title">Customize Analysis</div>
@@ -416,11 +358,11 @@
         </div>
       </div>
       <div class="option-group">
-        <label>Focus Area (optional)</label>
+        <label>Photo Type</label>
         <div class="option-chips">
+          <div class="chip selected" onclick="selectChip(this,'focus')">Full Body</div>
           <div class="chip" onclick="selectChip(this,'focus')">Upper Body</div>
           <div class="chip" onclick="selectChip(this,'focus')">Lower Body</div>
-          <div class="chip" onclick="selectChip(this,'focus')">Full Body</div>
           <div class="chip" onclick="selectChip(this,'focus')">Core</div>
         </div>
       </div>
@@ -460,7 +402,6 @@
           <span class="score-desc">Your Ceiling</span>
         </div>
       </div>
-
       <div class="hero-meta">
         <div class="tier-display" id="tierDisplay">—</div>
         <div class="hero-stats">
@@ -476,15 +417,23 @@
     <!-- 4 PILLARS -->
     <div class="pillars-grid" id="pillarsGrid"></div>
 
-    <!-- BODY MAP -->
+    <!-- BODY MAP SECTION -->
     <div class="body-analysis-section">
       <div class="section-eyebrow">Muscle Breakdown</div>
-      <div class="body-analysis-layout">
 
-        <!-- SVG Body Map -->
+      <!-- Side by side: photo + SVG -->
+      <div class="body-visual-grid">
+
+        <!-- Left: uploaded photo -->
+        <div class="result-photo-panel" id="resultPhotoPanel">
+          <div class="result-photo-label">Your Photo</div>
+          <img id="resultPhotoImg" src="" alt="Your physique">
+        </div>
+
+        <!-- Right: SVG body map -->
         <div class="body-map-container" id="bodyMapContainer">
+          <div class="body-map-label">Muscle Map — tap to explore</div>
           <div id="svgContainer"></div>
-
           <div class="map-legend">
             <div class="legend-item"><div class="legend-dot strong"></div>Strong</div>
             <div class="legend-item"><div class="legend-dot average"></div>Average</div>
@@ -492,41 +441,35 @@
           </div>
         </div>
 
-        <!-- Detail Panel -->
-        <div class="muscle-detail-panel">
+      </div>
 
-          <div class="detail-empty" id="detailEmpty">
-            <div class="detail-empty-icon">👆</div>
-            <p class="detail-empty-text">Tap any muscle group on the body map to see your detailed breakdown</p>
+      <!-- Detail panel below both -->
+      <div class="muscle-detail-panel">
+        <div class="detail-empty" id="detailEmpty">
+          <div class="detail-empty-icon">👆</div>
+          <p class="detail-empty-text">Tap any muscle group on the body map to see your detailed breakdown</p>
+        </div>
+        <div class="detail-content" id="detailContent">
+          <div class="detail-header">
+            <div class="detail-muscle-name" id="detailName">—</div>
+            <div class="detail-rating-badge" id="detailBadge">—</div>
           </div>
-
-          <div class="detail-content" id="detailContent">
-            <div class="detail-header">
-              <div class="detail-muscle-name" id="detailName">—</div>
-              <div class="detail-rating-badge" id="detailBadge">—</div>
-            </div>
-
+          <div>
             <div class="detail-score-section">
               <div class="detail-score-row">
                 <span class="detail-score-label">Development Score</span>
                 <span class="detail-score-num" id="detailScore">—</span>
               </div>
-              <div class="detail-bar">
-                <div class="detail-fill" id="detailFill" style="width:0%"></div>
-              </div>
+              <div class="detail-bar"><div class="detail-fill" id="detailFill" style="width:0%"></div></div>
             </div>
-
             <p class="detail-note" id="detailNote"></p>
-
             <div class="detail-priority-label">What to prioritize</div>
             <div class="detail-priority" id="detailPriority"></div>
-
-            <div class="muscles-overview">
-              <div class="muscles-overview-title">All Muscle Groups</div>
-              <div class="muscle-list" id="muscleList"></div>
-            </div>
           </div>
-
+          <div class="muscles-overview">
+            <div class="muscles-overview-title">All Muscle Groups</div>
+            <div class="muscle-list" id="muscleList"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -578,9 +521,6 @@
   let imageMime    = 'image/jpeg';
   let analysisData = null;
 
-  // ============================================
-  // INIT
-  // ============================================
   async function initPage() {
     const { data } = await db.auth.getSession();
     const session = data?.session;
@@ -596,9 +536,6 @@
     document.getElementById('analyzerMain').style.display = 'block';
   }
 
-  // ============================================
-  // CHIP + FILE
-  // ============================================
   function selectChip(el, group) {
     el.closest('.option-chips').querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
@@ -666,59 +603,47 @@
     if (file && file.type.startsWith('image/')) processFile(file);
   });
 
-  // ============================================
-  // ANALYZE
-  // ============================================
   async function analyzePhysique() {
     if (!imageBase64) return;
-
     document.querySelector('.upload-grid').style.display = 'none';
     document.querySelector('.photo-tips').style.display = 'none';
     document.getElementById('analyzingOverlay').classList.add('active');
     document.getElementById('resultsPanel').classList.remove('active');
 
-    const msgs = [
-      'Scanning muscle groups...',
-      'Estimating body composition...',
-      'Calculating pillar scores...',
-      'Assessing proportion & symmetry...',
-      'Building your breakdown...'
-    ];
+    const msgs = ['Scanning muscle groups...','Estimating body composition...','Calculating pillar scores...','Assessing proportion & symmetry...','Building your breakdown...'];
     let i = 0;
-    const msgInterval = setInterval(() => {
-      if (i < msgs.length) document.getElementById('analyzingMsg').textContent = msgs[i++];
-    }, 900);
+    const msgInterval = setInterval(() => { if (i < msgs.length) document.getElementById('analyzingMsg').textContent = msgs[i++]; }, 900);
 
     const prompt = `You are an expert physique coach and body composition specialist. Analyze this physique photo with the precision of a professional assessment tool.
 
 User Context:
 - Goal: ${selectedGoal}
 - Experience: ${selectedExp}
-- Focus: ${selectedFocus}
+- Photo Type: ${selectedFocus}
 
 Return ONLY this exact JSON, no markdown, no extra text:
 {
   "overallScore": <1-100. STRICT RANGE: Beginner with minimal muscle=15-30. Average gym-goer=31-50. Solid intermediate=51-65. Advanced aesthetic physique=66-80. Elite competitive level=81-100. DO NOT cluster in the 70s. Be honest.>,
-  "potentialScore": <1-100. Where they could realistically reach with 1-2 years of dedicated training based on their frame, current base, and genetics visible. Must be higher than overallScore.>,
+  "potentialScore": <1-100. Where they could realistically reach with 1-2 years of dedicated training. Must be higher than overallScore.>,
   "tier": "<exactly one of: Beginner, Novice, Intermediate, Advanced, Elite>",
   "bodyFat": "<estimated range e.g. '14-16%' or '18-22%'. Be realistic based on visible definition.>",
-  "overallAssessment": "<2-3 sentences. Honest, specific, encouraging. Mention standout strengths and biggest opportunity.>",
+  "overallAssessment": "<2-3 sentences. Honest, specific, encouraging.>",
   "pillars": {
-    "development": { "score": <1-100>, "insight": "<specific insight about their overall muscle mass and size relative to their frame>" },
-    "proportion": { "score": <1-100>, "insight": "<specific insight about V-taper, shoulder-to-waist ratio, upper-lower balance>" },
-    "conditioning": { "score": <1-100>, "insight": "<specific insight about body fat level, muscle definition, and leanness>" },
-    "symmetry": { "score": <1-100>, "insight": "<specific insight about left-right balance and upper-lower body proportion>" }
+    "development": { "score": <1-100>, "insight": "<specific insight about muscle mass relative to frame>" },
+    "proportion":  { "score": <1-100>, "insight": "<specific insight about V-taper, ratios>" },
+    "conditioning":{ "score": <1-100>, "insight": "<specific insight about body fat, definition>" },
+    "symmetry":    { "score": <1-100>, "insight": "<specific insight about balance>" }
   },
   "muscles": [
-    { "id": "chest", "name": "Chest", "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation about chest development>", "priority": "<specific exercise focus to improve this muscle group>" },
-    { "id": "shoulders", "name": "Shoulders", "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
-    { "id": "back", "name": "Back & Lats", "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
-    { "id": "arms", "name": "Arms", "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
-    { "id": "core", "name": "Core", "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
-    { "id": "legs", "name": "Legs", "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" }
+    { "id": "chest",     "name": "Chest",      "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific exercise focus>" },
+    { "id": "shoulders", "name": "Shoulders",  "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
+    { "id": "back",      "name": "Back & Lats","rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
+    { "id": "arms",      "name": "Arms",       "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
+    { "id": "core",      "name": "Core",       "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" },
+    { "id": "legs",      "name": "Legs",       "rating": "<strong|average|weak>", "score": <1-100>, "note": "<specific observation>", "priority": "<specific focus>" }
   ],
-  "actionPlan": "<3-4 sentences. Specific training priorities based on the weakest muscle groups and pillar scores. Name specific exercises.>",
-  "nutritionTip": "<2-3 sentences. Specific nutrition advice based on their visible body composition and stated goal.>"
+  "actionPlan": "<3-4 sentences. Specific training priorities. Name specific exercises.>",
+  "nutritionTip": "<2-3 sentences. Specific nutrition advice based on visible body composition and goal.>"
 }`;
 
     try {
@@ -728,23 +653,18 @@ Return ONLY this exact JSON, no markdown, no extra text:
         body: JSON.stringify({
           model: 'claude-sonnet-4-5',
           max_tokens: 1500,
-          messages: [{
-            role: 'user',
-            content: [
-              { type: 'image', source: { type: 'base64', media_type: imageMime, data: imageBase64 } },
-              { type: 'text', text: prompt }
-            ]
-          }]
+          messages: [{ role: 'user', content: [
+            { type: 'image', source: { type: 'base64', media_type: imageMime, data: imageBase64 } },
+            { type: 'text', text: prompt }
+          ]}]
         })
       });
-
       const data = await response.json();
       clearInterval(msgInterval);
       const raw = data.content?.[0]?.text || '{}';
       const clean = raw.replace(/```json|```/g, '').trim();
       analysisData = JSON.parse(clean);
       renderResults(analysisData);
-
     } catch (err) {
       clearInterval(msgInterval);
       document.getElementById('analyzingOverlay').classList.remove('active');
@@ -754,51 +674,36 @@ Return ONLY this exact JSON, no markdown, no extra text:
     }
   }
 
-  // ============================================
-  // RENDER
-  // ============================================
   function renderResults(data) {
     document.getElementById('analyzingOverlay').classList.remove('active');
     document.getElementById('resultsPanel').classList.add('active');
 
-    // Hero scores
     document.getElementById('scoreNum').textContent = data.overallScore || '—';
     document.getElementById('potentialNum').textContent = data.potentialScore || '—';
     document.getElementById('bodyFatNum').textContent = data.bodyFat || '—';
     document.getElementById('heroAssessment').textContent = data.overallAssessment || '';
 
-    // Tier badge
     const tierEl = document.getElementById('tierDisplay');
     const tier = (data.tier || 'beginner').toLowerCase();
     tierEl.textContent = data.tier || '—';
     tierEl.className = `tier-display tier-${tier}`;
 
-    // Pillars
     const pillarDefs = [
       { key: 'development', icon: '💪', name: 'Development' },
       { key: 'proportion',  icon: '⚖️', name: 'Proportion' },
-      { key: 'conditioning', icon: '🔥', name: 'Conditioning' },
+      { key: 'conditioning',icon: '🔥', name: 'Conditioning' },
       { key: 'symmetry',    icon: '🎯', name: 'Symmetry' }
     ];
-
-    const pillarsGrid = document.getElementById('pillarsGrid');
-    pillarsGrid.innerHTML = pillarDefs.map(p => {
+    document.getElementById('pillarsGrid').innerHTML = pillarDefs.map(p => {
       const pillar = data.pillars?.[p.key] || { score: 0, insight: '' };
-      return `
-        <div class="pillar-card">
-          <span class="pillar-icon">${p.icon}</span>
-          <div class="pillar-name">${p.name}</div>
-          <div class="pillar-score-row">
-            <span class="pillar-num" id="pillar-${p.key}">${pillar.score}</span>
-            <span class="pillar-max">/ 100</span>
-          </div>
-          <div class="pillar-bar"><div class="pillar-fill" id="pillar-fill-${p.key}" style="width:0%"></div></div>
-          <p class="pillar-insight">${pillar.insight}</p>
-        </div>
-      `;
+      return `<div class="pillar-card">
+        <span class="pillar-icon">${p.icon}</span>
+        <div class="pillar-name">${p.name}</div>
+        <div class="pillar-score-row"><span class="pillar-num">${pillar.score}</span><span class="pillar-max">/ 100</span></div>
+        <div class="pillar-bar"><div class="pillar-fill" id="pillar-fill-${p.key}" style="width:0%"></div></div>
+        <p class="pillar-insight">${pillar.insight}</p>
+      </div>`;
     }).join('');
-
-    // Animate pillar bars
     setTimeout(() => {
       pillarDefs.forEach(p => {
         const score = data.pillars?.[p.key]?.score || 0;
@@ -807,113 +712,70 @@ Return ONLY this exact JSON, no markdown, no extra text:
       });
     }, 100);
 
-    // Inject the right SVG for the selected focus area
-    injectBodyMap(selectedFocus);
-
-    // Color the SVG body map
-    colorBodyMap(data.muscles || []);
-
-    // Show uploaded photo as background of body map container
+    // Show uploaded photo in left panel
     if (imageBase64) {
-      const container = document.getElementById('bodyMapContainer');
-      container.style.backgroundImage = `url(data:image/jpeg;base64,${imageBase64})`;
-      container.classList.add('photo-mode');
+      const panel = document.getElementById('resultPhotoPanel');
+      const img = document.getElementById('resultPhotoImg');
+      img.src = `data:image/jpeg;base64,${imageBase64}`;
+      panel.classList.add('visible');
     }
 
-    // Action plan
+    // Inject and color SVG body map in right panel
+    injectBodyMap(selectedFocus);
+    colorBodyMap(data.muscles || []);
+
     document.getElementById('actionPlanText').textContent = data.actionPlan || '';
     document.getElementById('nutritionTipText').textContent = data.nutritionTip || '';
-
-    // Build muscle list
     buildMuscleList(data.muscles || []);
-
     document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // ============================================
-  // BODY MAP
-  // ============================================
   function colorBodyMap(muscles) {
-    // Clear all existing rating classes
-    document.querySelectorAll('.muscle-zone').forEach(z => {
-      z.classList.remove('rating-strong', 'rating-average', 'rating-weak', 'selected');
-    });
-
-    // Apply rating classes
+    document.querySelectorAll('.muscle-zone').forEach(z => z.classList.remove('rating-strong','rating-average','rating-weak','selected'));
     muscles.forEach(muscle => {
-      document.querySelectorAll(`[data-muscle="${muscle.id}"]`).forEach(zone => {
-        zone.classList.add(`rating-${muscle.rating}`);
-      });
+      document.querySelectorAll(`[data-muscle="${muscle.id}"]`).forEach(zone => zone.classList.add(`rating-${muscle.rating}`));
     });
-
-    // Add click listeners
-    const allZones = document.querySelectorAll('.muscle-zone');
-    allZones.forEach(zone => {
+    document.querySelectorAll('.muscle-zone').forEach(zone => {
       zone.removeEventListener('click', zone._clickHandler);
-      zone._clickHandler = () => {
-        const muscleId = zone.dataset.muscle;
-        selectMuscleGroup(muscleId, analysisData?.muscles || []);
-      };
+      zone._clickHandler = () => selectMuscleGroup(zone.dataset.muscle, analysisData?.muscles || []);
       zone.addEventListener('click', zone._clickHandler);
     });
   }
 
   function selectMuscleGroup(muscleId, muscles) {
-    // Deselect all
     document.querySelectorAll('.muscle-zone').forEach(z => z.classList.remove('selected'));
-    // Select this group
     document.querySelectorAll(`[data-muscle="${muscleId}"]`).forEach(z => z.classList.add('selected'));
-
     const muscle = muscles.find(m => m.id === muscleId);
     if (!muscle) return;
-
-    // Show detail panel
     document.getElementById('detailEmpty').style.display = 'none';
-    const content = document.getElementById('detailContent');
-    content.classList.add('active');
-
+    document.getElementById('detailContent').classList.add('active');
     document.getElementById('detailName').textContent = muscle.name;
-
     const badge = document.getElementById('detailBadge');
     badge.textContent = muscle.rating.charAt(0).toUpperCase() + muscle.rating.slice(1);
     badge.className = `detail-rating-badge ${muscle.rating}`;
-
     document.getElementById('detailScore').textContent = `${muscle.score}/100`;
-
     const fill = document.getElementById('detailFill');
     fill.className = `detail-fill ${muscle.rating}`;
     setTimeout(() => { fill.style.width = `${muscle.score}%`; }, 50);
-
     document.getElementById('detailNote').textContent = muscle.note;
     document.getElementById('detailPriority').textContent = muscle.priority;
-
-    // Update active state in muscle list
-    document.querySelectorAll('.muscle-list-item').forEach(item => {
-      item.classList.toggle('active', item.dataset.id === muscleId);
-    });
+    document.querySelectorAll('.muscle-list-item').forEach(item => item.classList.toggle('active', item.dataset.id === muscleId));
   }
 
   function buildMuscleList(muscles) {
-    const list = document.getElementById('muscleList');
     const ratingColors = { strong: '#C9A84C', average: '#a0a0b0', weak: '#dc5050' };
-    list.innerHTML = muscles.map(m => `
+    document.getElementById('muscleList').innerHTML = muscles.map(m => `
       <div class="muscle-list-item" data-id="${m.id}" onclick="selectMuscleGroup('${m.id}', analysisData?.muscles || [])">
         <div class="muscle-list-dot" style="background:${ratingColors[m.rating]}"></div>
         <span class="muscle-list-name">${m.name}</span>
         <span class="muscle-list-badge ${m.rating}">${m.rating}</span>
-      </div>
-    `).join('');
+      </div>`).join('');
   }
 
-  // ============================================
-  // RESET
-  // ============================================
   function resetAnalyzer() {
-    analysisData = null;
-    imageBase64 = null;
-    const container = document.getElementById('bodyMapContainer');
-    container.style.backgroundImage = '';
-    container.classList.remove('photo-mode');
+    analysisData = null; imageBase64 = null;
+    document.getElementById('resultPhotoPanel').classList.remove('visible');
+    document.getElementById('resultPhotoImg').src = '';
     document.getElementById('resultsPanel').classList.remove('active');
     document.getElementById('uploadPreview').classList.remove('visible');
     document.getElementById('uploadPreview').src = '';
@@ -930,12 +792,9 @@ Return ONLY this exact JSON, no markdown, no extra text:
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // ============================================
-  // SVG TEMPLATES PER FOCUS AREA
-  // ============================================
   const LABEL_STYLE = 'font-size="6" fill="rgba(255,255,255,0.25)" font-family="DM Sans, sans-serif" letter-spacing="1"';
 
-  const SVG_FULL = `<svg id="bodyMap" viewBox="0 0 200 440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  const SVG_FULL = `<svg id="bodyMap" viewBox="0 0 200 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
     <ellipse cx="100" cy="30" rx="22" ry="24" class="body-base"/>
     <rect x="90" y="52" width="20" height="16" class="body-base"/>
     <polygon points="42,68 158,68 148,175 52,175" class="body-base"/>
@@ -980,7 +839,7 @@ Return ONLY this exact JSON, no markdown, no extra text:
     <text x="78" y="318" text-anchor="middle" ${LABEL_STYLE}>CALVES</text>
   </svg>`;
 
-  const SVG_UPPER = `<svg id="bodyMap" viewBox="0 0 200 310" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  const SVG_UPPER = `<svg id="bodyMap" viewBox="0 0 200 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
     <ellipse cx="100" cy="30" rx="22" ry="24" class="body-base"/>
     <rect x="90" y="52" width="20" height="16" class="body-base"/>
     <polygon points="42,68 158,68 148,185 52,185" class="body-base"/>
@@ -1014,7 +873,7 @@ Return ONLY this exact JSON, no markdown, no extra text:
     <text x="100" y="136" text-anchor="middle" ${LABEL_STYLE}>CORE</text>
   </svg>`;
 
-  const SVG_LOWER = `<svg id="bodyMap" viewBox="0 0 200 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  const SVG_LOWER = `<svg id="bodyMap" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
     <ellipse cx="100" cy="20" rx="54" ry="20" class="body-base"/>
     <ellipse cx="78" cy="100" rx="24" ry="55" class="body-base"/>
     <ellipse cx="122" cy="100" rx="24" ry="55" class="body-base"/>
@@ -1030,7 +889,7 @@ Return ONLY this exact JSON, no markdown, no extra text:
     <text x="78" y="200" text-anchor="middle" ${LABEL_STYLE}>CALVES</text>
   </svg>`;
 
-  const SVG_CORE = `<svg id="bodyMap" viewBox="0 0 200 230" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  const SVG_CORE = `<svg id="bodyMap" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
     <polygon points="50,10 150,10 142,130 58,130" class="body-base"/>
     <ellipse cx="38" cy="55" rx="14" ry="38" class="body-base"/>
     <ellipse cx="162" cy="55" rx="14" ry="38" class="body-base"/>
@@ -1055,16 +914,10 @@ Return ONLY this exact JSON, no markdown, no extra text:
     <text x="62" y="99" text-anchor="middle" ${LABEL_STYLE}>OBL</text>
   </svg>`;
 
-  const SVG_MAP = {
-    'Full Body': SVG_FULL,
-    'Upper Body': SVG_UPPER,
-    'Lower Body': SVG_LOWER,
-    'Core': SVG_CORE
-  };
+  const SVG_MAP = { 'Full Body': SVG_FULL, 'Upper Body': SVG_UPPER, 'Lower Body': SVG_LOWER, 'Core': SVG_CORE };
 
   function injectBodyMap(focus) {
-    const container = document.getElementById('svgContainer');
-    container.innerHTML = SVG_MAP[focus] || SVG_FULL;
+    document.getElementById('svgContainer').innerHTML = SVG_MAP[focus] || SVG_FULL;
   }
 
   initPage();
