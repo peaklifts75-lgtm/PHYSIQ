@@ -6,40 +6,228 @@
   <title>PHYSIQ — Build Your Aesthetic</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    /* FEATURES SECTION */
+    .features-section {
+      padding: 120px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .features-eyebrow {
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px; text-align: center;
+    }
+    .features-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px); font-weight: 300;
+      color: var(--white); text-align: center; line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .features-heading em { color: var(--gold); font-style: italic; }
+    .features-sub {
+      font-size: 15px; color: rgba(255,255,255,0.3); font-weight: 300;
+      text-align: center; max-width: 520px; margin: 0 auto 72px; line-height: 1.7;
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .feature-card {
+      background: #141414; padding: 48px;
+      transition: background 0.2s;
+    }
+    .feature-card:hover { background: #1a1a1a; }
+    .feature-tag {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px; font-weight: 500;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .feature-tag::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.15); }
+    .feature-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 300; color: var(--white);
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .feature-title em { color: var(--gold); font-style: italic; }
+    .feature-desc {
+      font-size: 13px; color: rgba(255,255,255,0.3);
+      font-weight: 300; line-height: 1.8; margin-bottom: 24px;
+    }
+    .feature-points { display: flex; flex-direction: column; gap: 8px; }
+    .feature-point {
+      font-size: 12px; color: rgba(255,255,255,0.25);
+      font-weight: 300; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .feature-point::before { content: '✦'; color: var(--gold); font-size: 8px; margin-top: 3px; opacity: 0.6; flex-shrink: 0; }
+
+    /* HOW IT WORKS STRIP */
+    .how-strip {
+      background: #141414;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding: 80px 60px;
+    }
+    .how-strip-inner { max-width: 1200px; margin: 0 auto; }
+    .how-strip-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 42px); font-weight: 300;
+      color: var(--white); margin-bottom: 56px; text-align: center;
+    }
+    .how-strip-heading em { color: var(--gold); font-style: italic; }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .how-step { background: #0a0a0a; padding: 40px; }
+    .how-step-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+      color: rgba(201,168,76,0.15); letter-spacing: 2px;
+      line-height: 1; margin-bottom: 16px; display: block;
+    }
+    .how-step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 300; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .how-step-title em { color: var(--gold); font-style: italic; }
+    .how-step-desc { font-size: 13px; color: rgba(255,255,255,0.25); font-weight: 300; line-height: 1.7; }
+
+    /* PRICING SECTION */
+    .pricing-section {
+      padding: 120px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pricing-eyebrow {
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px; text-align: center;
+    }
+    .pricing-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3vw, 48px); font-weight: 300;
+      color: var(--white); text-align: center; margin-bottom: 56px; line-height: 1.1;
+    }
+    .pricing-heading em { color: var(--gold); font-style: italic; }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .pricing-card { background: #141414; padding: 40px; }
+    .pricing-card.featured { background: #1a1612; }
+    .pricing-tier {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 20px; font-weight: 500;
+    }
+    .pricing-card.featured .pricing-tier { color: var(--gold); }
+    .pricing-price {
+      font-family: 'Bebas Neue', sans-serif; font-size: 52px;
+      color: var(--white); letter-spacing: 2px; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-period { font-size: 12px; color: rgba(255,255,255,0.2); font-weight: 300; margin-bottom: 28px; }
+    .pricing-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+    .pricing-feature {
+      font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 300;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pricing-feature.included { color: rgba(255,255,255,0.6); }
+    .pricing-feature::before { content: '—'; color: rgba(255,255,255,0.1); font-size: 10px; }
+    .pricing-feature.included::before { content: '✦'; color: var(--gold); font-size: 8px; }
+    .pricing-cta {
+      width: 100%; padding: 14px; font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: all 0.2s; text-decoration: none;
+      display: block; text-align: center;
+    }
+    .pricing-cta.outline {
+      background: none; border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.3);
+    }
+    .pricing-cta.outline:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+    .pricing-cta.gold { background: var(--gold); color: var(--black); border: none; }
+    .pricing-cta.gold:hover { background: var(--gold-light); }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: #141414;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding: 100px 60px;
+      text-align: center;
+    }
+    .cta-eyebrow {
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 60px); font-weight: 300;
+      color: var(--white); line-height: 1.1; margin-bottom: 24px;
+    }
+    .cta-heading em { color: var(--gold); font-style: italic; }
+    .cta-sub {
+      font-size: 15px; color: rgba(255,255,255,0.3); font-weight: 300;
+      max-width: 480px; margin: 0 auto 40px; line-height: 1.7;
+    }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; align-items: center; }
+    .cta-btn-primary {
+      background: var(--gold); color: var(--black); border: none;
+      padding: 16px 40px; font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: background 0.2s;
+    }
+    .cta-btn-primary:hover { background: var(--gold-light); }
+    .cta-btn-ghost {
+      background: none; border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.4); padding: 16px 32px;
+      font-family: 'DM Sans', sans-serif; font-size: 12px;
+      font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: all 0.2s;
+    }
+    .cta-btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+    @media (max-width: 900px) {
+      .features-section, .pricing-section { padding: 80px 24px; }
+      .how-strip { padding: 60px 24px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; }
+      .cta-actions { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ============================================
-     NAV
-     ============================================ -->
+<!-- NAV -->
 <nav>
   <div class="logo">PHYSI<span>Q</span></div>
   <ul>
-    <li><a href="index.html">Build</a></li>
-<li><a href="how-it-works.html">How It Works</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="login.html" class="nav-cta">Get Your Plan</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="login.html" class="nav-cta">Get Started</a></li>
   </ul>
 </nav>
 
-<!-- ============================================
-     HERO
-     ============================================ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="eyebrow">Built for lifters. Chase greatness.</div>
+    <div class="eyebrow">AI-powered fitness tools. Built for lifters.</div>
     <h1>
       Train for<br>
       <em>Your</em><br>
       <strong>Aesthetic.</strong>
     </h1>
     <p class="hero-sub">
-      Your first steps towards the physique you want. Get a plan personalized
-      to your body, your schedule. Maximize progress through Physiqs tools.
+      Upload your photo, get a full physique analysis. Build a 12-week program around your exact exercises and goals. Everything personalized — nothing generic.
     </p>
     <div class="hero-actions">
-      <a href="login.html" class="btn-primary">Get Your Plan</a>
-      <a href="#" class="btn-ghost">See How It Works</a>
+      <a href="login.html" class="btn-primary">Get Started Free</a>
+      <a href="how-it-works.html" class="btn-ghost">See How It Works</a>
     </div>
   </div>
 
@@ -52,379 +240,196 @@
     </div>
     <div class="hero-stat-block">
       <div class="stat-item">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">Personalized</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">Physique</span>
-        <span class="stat-label">Analysis</span>
+        <span class="stat-num">AI</span>
+        <span class="stat-label">Physique Scan</span>
       </div>
       <div class="stat-item">
         <span class="stat-num">12W</span>
         <span class="stat-label">Programs</span>
       </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Personalized</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================
-     MARQUEE TICKER
-     ============================================ -->
+<!-- MARQUEE -->
 <div class="marquee-bar">
   <div class="marquee-track">
-    <span class="marquee-item">AESTHETIC LIFTING</span><span class="marquee-dot">◆</span>
-    <span class="marquee-item">PERSONALIZED PLANS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">AI PHYSIQUE ANALYSIS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">PERSONALIZED PROGRAMS</span><span class="marquee-dot">◆</span>
     <span class="marquee-item">BUILT FOR LIFTERS</span><span class="marquee-dot">◆</span>
     <span class="marquee-item">TRAIN WITH PURPOSE</span><span class="marquee-dot">◆</span>
-    <span class="marquee-item">ENOUGH BS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">NO GENERIC PLANS</span><span class="marquee-dot">◆</span>
     <span class="marquee-item">REAL RESULTS</span><span class="marquee-dot">◆</span>
-    <!-- Duplicate for seamless loop -->
-    <span class="marquee-item">AESTHETIC LIFTING</span><span class="marquee-dot">◆</span>
-    <span class="marquee-item">PERSONALIZED PLANS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">AI PHYSIQUE ANALYSIS</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">PERSONALIZED PROGRAMS</span><span class="marquee-dot">◆</span>
     <span class="marquee-item">BUILT FOR LIFTERS</span><span class="marquee-dot">◆</span>
     <span class="marquee-item">TRAIN WITH PURPOSE</span><span class="marquee-dot">◆</span>
-    <span class="marquee-item">NO FLUFF</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">NO GENERIC PLANS</span><span class="marquee-dot">◆</span>
     <span class="marquee-item">REAL RESULTS</span><span class="marquee-dot">◆</span>
   </div>
 </div>
 
-<!-- ============================================
-     PROGRAM FORM SECTION
-     ============================================ -->
-<section class="form-section" id="build">
+<!-- DARK SECTIONS WRAPPER -->
+<div style="background:#0F0F0F;">
 
-  <!-- Left: intro copy -->
-  <div class="form-intro reveal">
-    <div class="section-tag">Your Program</div>
-    <h2>Built around <em>you.</em> Not a template.</h2>
-    <p>
-      Answer a few questions and get a 12-week lifting program written specifically
-      for your body, your equipment, and the aesthetic you're building toward.
-      No generic plans. No bro-science.
-    </p>
-    <div class="trust-items">
-      <div class="trust-item">
-        <div class="trust-icon">✦</div>
-        Takes 90 seconds to fill out
+<!-- FEATURES -->
+<div class="features-section" id="build">
+  <div class="features-eyebrow">What PHYSIQ Does</div>
+  <h2 class="features-heading">Every tool you need to<br>build the physique you <em>want.</em></h2>
+  <p class="features-sub">Stop guessing. PHYSIQ gives you an AI coach, a custom program, and the nutrition tools to actually get there.</p>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-tag">AI-Powered</div>
+      <div class="feature-title">Physique <em>Analyzer</em></div>
+      <p class="feature-desc">Upload a photo and get a full breakdown of your physique — scored across 4 pillars with an interactive muscle map showing exactly what to work on.</p>
+      <div class="feature-points">
+        <div class="feature-point">Current score + realistic potential score</div>
+        <div class="feature-point">4 pillars: Development, Proportion, Conditioning, Symmetry</div>
+        <div class="feature-point">Clickable muscle map with specific feedback per group</div>
+        <div class="feature-point">Estimated body fat and tier rating</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon">✦</div>
-        Programs focused on aesthetic development
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-tag">Personalized</div>
+      <div class="feature-title">Program <em>Generator</em></div>
+      <p class="feature-desc">Answer 5 questions, pick your exact exercises, and get a 12-week lifting program built specifically around your goal, schedule, and equipment.</p>
+      <div class="feature-points">
+        <div class="feature-point">Choose from a curated exercise library per muscle group</div>
+        <div class="feature-point">Push/Pull/Legs or Upper/Lower split based on your schedule</div>
+        <div class="feature-point">Rep and set schemes matched to your goal</div>
+        <div class="feature-point">Save, rename, and load programs anytime</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon">✦</div>
-        Built for anyone serious about their physique
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-tag">Nutrition</div>
+      <div class="feature-title">Macro <em>Calculator</em></div>
+      <p class="feature-desc">Get your exact daily macro targets based on your body stats and goal. Protein, carbs, and fat broken down by meal so you actually know what to eat.</p>
+      <div class="feature-points">
+        <div class="feature-point">Calculated using Mifflin-St Jeor BMR formula</div>
+        <div class="feature-point">Adjusts targets for bulk, cut, or maintenance</div>
+        <div class="feature-point">Meal-by-meal macro split</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon">✦</div>
-        Sign in to use
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-tag">Pro Feature</div>
+      <div class="feature-title">Progress <em>Tracker</em></div>
+      <p class="feature-desc">Upload progress photos over time and let the AI compare them side by side — telling you exactly what has changed and what to focus on next.</p>
+      <div class="feature-points">
+        <div class="feature-point">Side-by-side before and after comparison</div>
+        <div class="feature-point">AI analysis of visible changes between photos</div>
+        <div class="feature-point">Weight tracking over time</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HOW IT WORKS STRIP -->
+<div class="how-strip">
+  <div class="how-strip-inner">
+    <h2 class="how-strip-heading">Up and running in <em>minutes.</em></h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="how-step-num">01</span>
+        <div class="how-step-title">Create your <em>account</em></div>
+        <p class="how-step-desc">Sign up free. No credit card needed to get started. Free users get access to the Program Generator right away.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-step-num">02</span>
+        <div class="how-step-title">Build your <em>program</em></div>
+        <p class="how-step-desc">Answer 5 questions, pick the exercises you have access to, and get a full 12-week plan in under 30 seconds.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-step-num">03</span>
+        <div class="how-step-title">Analyze your <em>physique</em></div>
+        <p class="how-step-desc">Upload a photo and get a full breakdown — scores, muscle map, and a specific action plan. Upgrade to Base or Pro to unlock.</p>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Right: the form card -->
-  <div class="reveal">
-    <div class="program-form" id="programForm">
+<!-- PRICING -->
+<div class="pricing-section">
+  <div class="pricing-eyebrow">Simple Pricing</div>
+  <h2 class="pricing-heading">Start free. Upgrade when<br>you're <em>ready.</em></h2>
+  <div class="pricing-grid">
 
-      <div class="form-header">
-        <h3>Build Your Program</h3>
-        <p>Your answers shape everything. Be honest — this is for you.</p>
+    <div class="pricing-card">
+      <div class="pricing-tier">Free</div>
+      <div class="pricing-price">$0</div>
+      <div class="pricing-period">forever</div>
+      <div class="pricing-features">
+        <div class="pricing-feature included">Program Generator</div>
+        <div class="pricing-feature">Physique Analyzer</div>
+        <div class="pricing-feature">Macro Calculator</div>
+        <div class="pricing-feature">Meal Planner</div>
+        <div class="pricing-feature">Progress Tracker</div>
       </div>
+      <a href="login.html" class="pricing-cta outline">Get Started</a>
+    </div>
 
-      <!-- Progress dots -->
-      <div class="step-indicator" id="stepIndicator">
-        <div class="step-dot active" id="dot0"></div>
-        <div class="step-dot" id="dot1"></div>
-        <div class="step-dot" id="dot2"></div>
-        <div class="step-dot" id="dot3"></div>
+    <div class="pricing-card featured">
+      <div class="pricing-tier">Base — Most Popular</div>
+      <div class="pricing-price">$9.99</div>
+      <div class="pricing-period">per month</div>
+      <div class="pricing-features">
+        <div class="pricing-feature included">Program Generator</div>
+        <div class="pricing-feature included">Physique Analyzer (3/mo)</div>
+        <div class="pricing-feature included">Macro Calculator</div>
+        <div class="pricing-feature">Meal Planner</div>
+        <div class="pricing-feature">Progress Tracker</div>
       </div>
+      <a href="login.html" class="pricing-cta gold">Get Base</a>
+    </div>
 
-      <!-- ---- STEP 1: Basic Info ---- -->
-      <div class="form-step active" id="step0">
-        <div class="field-row">
-          <div class="field-group">
-            <label>Your Name</label>
-            <input type="text" id="userName" placeholder="First name">
-          </div>
-          <div class="field-group">
-            <label>Age</label>
-            <input type="number" id="userAge" placeholder="e.g. 17" min="13" max="99">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field-group">
-            <label>Height</label>
-            <input type="text" id="userHeight" placeholder='e.g. 5&apos;10"'>
-          </div>
-          <div class="field-group">
-            <label>Weight (lbs)</label>
-            <input type="number" id="userWeight" placeholder="150">
-          </div>
-        </div>
-        <div class="field-group">
-          <label>How long have you been lifting?</label>
-          <div class="option-grid">
-            <label class="option-card" onclick="selectOption(this, 'experience')">
-              <input type="radio" name="experience" value="never">
-              <span class="option-emoji">🔰</span>
-              <span class="option-label">Never started</span>
-              <span class="option-sub">Complete beginner</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'experience')">
-              <input type="radio" name="experience" value="under6">
-              <span class="option-emoji">📈</span>
-              <span class="option-label">Under 6 months</span>
-              <span class="option-sub">Just getting started</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'experience')">
-              <input type="radio" name="experience" value="6to18">
-              <span class="option-emoji">💪</span>
-              <span class="option-label">6–18 months</span>
-              <span class="option-sub">Some foundation</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'experience')">
-              <input type="radio" name="experience" value="over18">
-              <span class="option-emoji">🏆</span>
-              <span class="option-label">1.5+ years</span>
-              <span class="option-sub">Intermediate</span>
-            </label>
-          </div>
-        </div>
-        <div class="form-nav">
-          <span></span>
-          <span class="step-counter">01 / 04</span>
-          <button class="btn-next" onclick="nextStep(0)">Continue →</button>
-        </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Pro</div>
+      <div class="pricing-price">$19.99</div>
+      <div class="pricing-period">per month</div>
+      <div class="pricing-features">
+        <div class="pricing-feature included">Program Generator</div>
+        <div class="pricing-feature included">Physique Analyzer (unlimited)</div>
+        <div class="pricing-feature included">Macro Calculator</div>
+        <div class="pricing-feature included">Meal Planner</div>
+        <div class="pricing-feature included">Progress Tracker</div>
       </div>
+      <a href="login.html" class="pricing-cta outline">Get Pro</a>
+    </div>
 
-      <!-- ---- STEP 2: Goals ---- -->
-      <div class="form-step" id="step1">
-        <div class="field-group">
-          <label>What's your main goal?</label>
-          <div class="option-grid">
-            <label class="option-card" onclick="selectOption(this, 'goal')">
-              <input type="radio" name="goal" value="bulk">
-              <span class="option-emoji">📦</span>
-              <span class="option-label">Build Size</span>
-              <span class="option-sub">Add muscle mass</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'goal')">
-              <input type="radio" name="goal" value="cut">
-              <span class="option-emoji">🔥</span>
-              <span class="option-label">Get Lean</span>
-              <span class="option-sub">Burn fat, stay strong</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'goal')">
-              <input type="radio" name="goal" value="aesthetic">
-              <span class="option-emoji">🗿</span>
-              <span class="option-label">Aesthetic Physique</span>
-              <span class="option-sub">V-taper, proportion</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'goal')">
-              <input type="radio" name="goal" value="strength">
-              <span class="option-emoji">⚡</span>
-              <span class="option-label">Raw Strength</span>
-              <span class="option-sub">Get seriously strong</span>
-            </label>
-          </div>
-        </div>
-        <div class="field-group">
-          <label>Body type right now?</label>
-          <div class="option-grid">
-            <label class="option-card" onclick="selectOption(this, 'bodytype')">
-              <input type="radio" name="bodytype" value="skinny">
-              <span class="option-emoji">🦴</span>
-              <span class="option-label">Skinny</span>
-              <span class="option-sub">Hard to gain weight</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'bodytype')">
-              <input type="radio" name="bodytype" value="average">
-              <span class="option-emoji">⚖️</span>
-              <span class="option-label">Average</span>
-              <span class="option-sub">Somewhere in between</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'bodytype')">
-              <input type="radio" name="bodytype" value="stocky">
-              <span class="option-emoji">🪨</span>
-              <span class="option-label">Stocky / Chubby</span>
-              <span class="option-sub">More to lose</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'bodytype')">
-              <input type="radio" name="bodytype" value="athletic">
-              <span class="option-emoji">🏃</span>
-              <span class="option-label">Already Athletic</span>
-              <span class="option-sub">Active background</span>
-            </label>
-          </div>
-        </div>
-        <div class="form-nav">
-          <button class="btn-back" onclick="prevStep(1)">← Back</button>
-          <span class="step-counter">02 / 04</span>
-          <button class="btn-next" onclick="nextStep(1)">Continue →</button>
-        </div>
-      </div>
-
-      <!-- ---- STEP 3: Schedule & Equipment ---- -->
-      <div class="form-step" id="step2">
-        <div class="field-group">
-          <label>Days per week you can train</label>
-          <div class="option-grid">
-            <label class="option-card" onclick="selectOption(this, 'days')">
-              <input type="radio" name="days" value="3">
-              <span class="option-emoji">📅</span>
-              <span class="option-label">3 Days</span>
-              <span class="option-sub">Busy schedule</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'days')">
-              <input type="radio" name="days" value="4">
-              <span class="option-emoji">📅</span>
-              <span class="option-label">4 Days</span>
-              <span class="option-sub">Good balance</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'days')">
-              <input type="radio" name="days" value="5">
-              <span class="option-emoji">📅</span>
-              <span class="option-label">5 Days</span>
-              <span class="option-sub">Committed</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'days')">
-              <input type="radio" name="days" value="6">
-              <span class="option-emoji">📅</span>
-              <span class="option-label">6 Days</span>
-              <span class="option-sub">All in</span>
-            </label>
-          </div>
-        </div>
-        <div class="field-group">
-          <label>Equipment access</label>
-          <div class="option-grid">
-            <label class="option-card" onclick="selectOption(this, 'equipment')">
-              <input type="radio" name="equipment" value="full">
-              <span class="option-emoji">🏋️</span>
-              <span class="option-label">Full Gym</span>
-              <span class="option-sub">All machines & free weights</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'equipment')">
-              <input type="radio" name="equipment" value="basic">
-              <span class="option-emoji">🔩</span>
-              <span class="option-label">Basic Gym</span>
-              <span class="option-sub">Barbells & dumbbells</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'equipment')">
-              <input type="radio" name="equipment" value="home">
-              <span class="option-emoji">🏠</span>
-              <span class="option-label">Home Setup</span>
-              <span class="option-sub">Dumbbells / bench</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'equipment')">
-              <input type="radio" name="equipment" value="none">
-              <span class="option-emoji">🤸</span>
-              <span class="option-label">No Equipment</span>
-              <span class="option-sub">Bodyweight only</span>
-            </label>
-          </div>
-        </div>
-        <div class="form-nav">
-          <button class="btn-back" onclick="prevStep(2)">← Back</button>
-          <span class="step-counter">03 / 04</span>
-          <button class="btn-next" onclick="nextStep(2)">Continue →</button>
-        </div>
-      </div>
-
-      <!-- ---- STEP 4: Focus & Notes ---- -->
-      <div class="form-step" id="step3">
-        <div class="field-group">
-          <label>Weak points you want to prioritize</label>
-          <div class="option-grid">
-            <label class="option-card" onclick="selectOption(this, 'focus')">
-              <input type="radio" name="focus" value="chest_shoulders">
-              <span class="option-emoji">🫁</span>
-              <span class="option-label">Chest & Shoulders</span>
-              <span class="option-sub">Upper body width</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'focus')">
-              <input type="radio" name="focus" value="back">
-              <span class="option-emoji">🔼</span>
-              <span class="option-label">Back & Lats</span>
-              <span class="option-sub">V-taper, thickness</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'focus')">
-              <input type="radio" name="focus" value="arms">
-              <span class="option-emoji">💪</span>
-              <span class="option-label">Arms</span>
-              <span class="option-sub">Biceps & triceps</span>
-            </label>
-            <label class="option-card" onclick="selectOption(this, 'focus')">
-              <input type="radio" name="focus" value="legs">
-              <span class="option-emoji">🦵</span>
-              <span class="option-label">Legs</span>
-              <span class="option-sub">Quads, glutes, hamstrings</span>
-            </label>
-          </div>
-        </div>
-        <div class="field-group">
-          <label>Anything else we should know? (optional)</label>
-          <textarea id="userNotes"
-            placeholder="e.g. I have a bad shoulder, I play basketball, I can only train after school..."
-            rows="3"
-            style="resize:none;"></textarea>
-        </div>
-        <div class="form-nav">
-          <button class="btn-back" onclick="prevStep(3)">← Back</button>
-          <span class="step-counter">04 / 04</span>
-          <button class="btn-next" onclick="generateProgram()" id="generateBtn">
-            Generate My Program →
-          </button>
-        </div>
-      </div>
-
-      <!-- ---- LOADING ---- -->
-      <div class="program-loading" id="loadingPanel">
-        <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">
-          Building your program
-        </div>
-        <div class="loading-bar">
-          <div class="loading-fill" id="loadingFill"></div>
-        </div>
-        <div class="loading-text" id="loadingText">Analyzing your stats...</div>
-      </div>
-
-      <!-- ---- RESULT ---- -->
-      <div class="result-panel" id="resultPanel">
-        <div class="result-header">
-          <div class="result-name" id="resultName">Your Personalized Plan</div>
-          <div class="result-title" id="resultTitle">12-Week Aesthetic Program</div>
-        </div>
-        <div class="result-body">
-          <div class="program-output" id="programOutput"></div>
-          <div class="cta-strip">
-            <p>Want your nutrition plan, progressive overload tracker, and weekly check-ins?</p>
-            <button
-              class="btn-next"
-              style="margin:0 auto;display:block;"
-              onclick="alert('Coming soon — drop your email and be first to know when Pro launches.')">
-              Unlock Full Program — Free
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end .program-form -->
   </div>
-</section>
+</div>
 
-<!-- ============================================
-     FOOTER
-     ============================================ -->
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-eyebrow">Start Today</div>
+  <h2 class="cta-heading">Stop guessing.<br>Start <em>building.</em></h2>
+  <p class="cta-sub">Create a free account and generate your first 12-week program in under 2 minutes.</p>
+  <div class="cta-actions">
+    <a href="login.html" class="cta-btn-primary">Create Free Account</a>
+    <a href="how-it-works.html" class="cta-btn-ghost">Learn More</a>
+  </div>
+</div>
+
+</div><!-- end dark sections wrapper -->
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">PHYSI<span>Q</span></div>
   <div class="footer-social">
-    <a href="https://www.tiktok.com/@physiq_site" target="_blank" class="social-link">TikTok</a>
+    <a href="https://www.tiktok.com/@physiqsite" target="_blank" class="social-link">TikTok</a>
     <a href="https://www.instagram.com/physiq.site" target="_blank" class="social-link">Instagram</a>
   </div>
   <div class="footer-copy">© 2025 PHYSIQ — Built for the next generation of lifters</div>
 </footer>
 
-<script src="app.js"></script>
 </body>
 </html>
