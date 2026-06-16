@@ -194,7 +194,9 @@
       background: var(--black); padding: 24px 32px;
       border-bottom: 1px solid rgba(201,168,76,0.15);
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      position: relative; overflow: hidden;
     }
+    .result-header::before, .result-header::after { display: none !important; }
     .result-name-input {
       background: none; border: none; border-bottom: 1px solid rgba(201,168,76,0.2);
       color: var(--white); font-family: 'Cormorant Garamond', serif;
@@ -460,6 +462,7 @@
   let currentStep = 0;
   let currentUser = null;
   let currentProgramId = null;
+  let currentGoal = '';
   let savedPrograms = [];
   const formData = {};
 
@@ -720,31 +723,34 @@ Format with clear headers. ~400-500 words.`;
   async function saveCurrentProgram(autoName, autoContent) {
     const name = autoName || document.getElementById('programNameInput').value || 'My Program';
     const content = autoContent || document.getElementById('programOutput').innerHTML;
-    const goal = formData.goal || '';
+    const goal = formData.goal || currentGoal || '';
 
-    if (currentProgramId) {
-      // Update existing
-      await db.from('programs').update({ name }).eq('id', currentProgramId);
-    } else {
-      // Insert new
-      const { data, error } = await db.from('programs').insert({
-        user_id: currentUser.id,
-        name,
-        content,
-        goal
-      }).select().single();
-      if (data) currentProgramId = data.id;
+    try {
+      if (currentProgramId) {
+        await db.from('programs').update({ name }).eq('id', currentProgramId);
+      } else {
+        const { data, error } = await db.from('programs').insert({
+          user_id: currentUser.id,
+          name,
+          content,
+          goal
+        }).select().single();
+        if (error) { console.error('Save error:', error); return; }
+        if (data) currentProgramId = data.id;
+      }
+
+      const btn = document.getElementById('saveBtn');
+      btn.textContent = '✓ Saved';
+      btn.className = 'save-btn saved';
+      setTimeout(() => {
+        btn.textContent = 'Save';
+        btn.className = 'save-btn';
+      }, 2000);
+
+      await loadSavedPrograms();
+    } catch(err) {
+      console.error('Save failed:', err);
     }
-
-    const btn = document.getElementById('saveBtn');
-    btn.textContent = '✓ Saved';
-    btn.className = 'save-btn saved';
-    setTimeout(() => {
-      btn.textContent = 'Save';
-      btn.className = 'save-btn';
-    }, 2000);
-
-    await loadSavedPrograms();
   }
 
   async function loadSavedPrograms() {
@@ -775,6 +781,7 @@ Format with clear headers. ~400-500 words.`;
     if (!program) return;
 
     currentProgramId = id;
+    currentGoal = program.goal || '';
 
     // Hide form, show result
     document.getElementById('stepBar').style.display = 'none';
