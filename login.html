@@ -314,7 +314,7 @@
     <div class="auth-perks">
       <div class="auth-perk">
         <div class="perk-dot"></div>
-        The program built for you
+        AI-generated programs built around your body
       </div>
       <div class="auth-perk">
         <div class="perk-dot"></div>
@@ -483,8 +483,7 @@
       options: {
         data: {
           full_name: name,
-          tier: 'free',
-          trial_start: new Date().toISOString()
+          tier: 'free'
         }
       }
     });
@@ -494,7 +493,7 @@
     if (error) {
       showMessage('signupMessage', error.message, 'error');
     } else {
-      showMessage('signupMessage', '✓ Account created! Check your email to confirm then sign in.', 'success');
+      window.location.href = 'dashboard.html';
     }
   }
 

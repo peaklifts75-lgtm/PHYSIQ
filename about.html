@@ -16,217 +16,57 @@
       position: relative;
       overflow: hidden;
     }
-
     .about-hero-grid {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image:
         linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
       background-size: 40px 40px;
     }
-
     .about-hero-bg-text {
-      position: absolute;
-      bottom: -20px;
-      right: -10px;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 200px;
-      color: rgba(201,168,76,0.04);
-      letter-spacing: 10px;
-      pointer-events: none;
-      line-height: 1;
+      position: absolute; bottom: -20px; right: -10px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 200px;
+      color: rgba(201,168,76,0.04); letter-spacing: 10px;
+      pointer-events: none; line-height: 1;
     }
-
-    .about-hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-    }
-
-    .about-hero-content .eyebrow {
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
+    .about-hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .about-hero-content .eyebrow { color: var(--gold); margin-bottom: 24px; }
     .about-hero-content .eyebrow::before { background: var(--gold); }
-
-    .about-hero-content h1 {
-      color: var(--white);
-      margin-bottom: 24px;
-      font-size: clamp(48px, 6vw, 88px);
-    }
+    .about-hero-content h1 { color: var(--white); margin-bottom: 24px; font-size: clamp(48px, 6vw, 88px); }
     .about-hero-content h1 em { color: var(--gold); }
+    .about-hero-content p { font-size: 17px; line-height: 1.75; color: rgba(255,255,255,0.45); font-weight: 300; max-width: 520px; }
 
-    .about-hero-content p {
-      font-size: 17px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.45);
-      font-weight: 300;
-      max-width: 520px;
-    }
-
-    /* ============================================
-       STORY SECTION — single column, clean
-       ============================================ */
-    .story-section {
-      padding: 100px 80px;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .story-block {
-      margin-bottom: 64px;
-      padding-bottom: 64px;
-      border-bottom: 1px solid var(--grey-light);
-    }
-    .story-block:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
+    .story-section { padding: 100px 80px; max-width: 860px; margin: 0 auto; }
+    .story-block { margin-bottom: 64px; padding-bottom: 64px; border-bottom: 1px solid var(--grey-light); }
+    .story-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .story-block .section-tag { margin-bottom: 20px; }
-
-    .story-block h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 3vw, 44px);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      letter-spacing: -0.5px;
-    }
+    .story-block h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 44px); font-weight: 300; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.5px; }
     .story-block h3 em { font-style: italic; color: var(--gold); }
-
-    .story-block p {
-      font-size: 15px;
-      line-height: 1.85;
-      color: var(--grey);
-      font-weight: 300;
-      margin-bottom: 16px;
-    }
+    .story-block p { font-size: 15px; line-height: 1.85; color: var(--grey); font-weight: 300; margin-bottom: 16px; }
     .story-block p:last-child { margin-bottom: 0; }
     .story-block p strong { color: var(--black); font-weight: 500; }
 
-    .pull-quote {
-      border-left: 2px solid var(--gold);
-      padding: 20px 28px;
-      margin: 32px 0;
-      background: var(--white);
-    }
-    .pull-quote p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--black) !important;
-      line-height: 1.5;
-      margin: 0 !important;
-    }
+    .pull-quote { border-left: 2px solid var(--gold); padding: 20px 28px; margin: 32px 0; background: var(--white); }
+    .pull-quote p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; font-style: italic; color: var(--black) !important; line-height: 1.5; margin: 0 !important; }
 
-    /* Email capture */
-    .email-row {
-      display: flex;
-      gap: 12px;
-      margin-top: 28px;
-      flex-wrap: wrap;
-    }
-    .email-row input {
-      flex: 1;
-      min-width: 200px;
-      padding: 14px 16px;
-      border: 1px solid var(--grey-light);
-      background: var(--cream);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--black);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .email-row input:focus { border-color: var(--gold); }
-
-    /* ============================================
-       VALUES
-       ============================================ */
-    .values-section {
-      background: var(--black);
-      padding: 100px 80px;
-    }
-
+    .values-section { background: var(--black); padding: 100px 80px; }
     .values-inner { max-width: 1400px; margin: 0 auto; }
-
     .values-header { margin-bottom: 60px; }
     .values-header h2 { color: var(--white); font-size: clamp(32px, 4vw, 56px); }
     .values-header h2 em { color: var(--gold); }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(201,168,76,0.1);
-      border: 1px solid rgba(201,168,76,0.1);
-    }
-
-    .value-card {
-      background: var(--charcoal);
-      padding: 40px 32px;
-      transition: background 0.2s;
-    }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.1); }
+    .value-card { background: var(--charcoal); padding: 40px 32px; transition: background 0.2s; }
     .value-card:hover { background: #222; }
+    .value-number { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: rgba(201,168,76,0.15); letter-spacing: 2px; line-height: 1; margin-bottom: 20px; display: block; }
+    .value-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--white); margin-bottom: 12px; }
+    .value-desc { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.35); font-weight: 300; }
 
-    .value-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      color: rgba(201,168,76,0.15);
-      letter-spacing: 2px;
-      line-height: 1;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .value-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    .value-desc {
-      font-size: 13px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.35);
-      font-weight: 300;
-    }
-
-    /* ============================================
-       BOTTOM CTA
-       ============================================ */
-    .about-cta {
-      padding: 100px 80px;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
+    .about-cta { padding: 100px 80px; text-align: center; max-width: 700px; margin: 0 auto; }
     .about-cta .section-tag { justify-content: center; }
     .about-cta .section-tag::after { display: none; }
-    .about-cta .section-tag::before {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      max-width: 40px;
-    }
-
+    .about-cta .section-tag::before { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 40px; }
     .about-cta h2 { font-size: clamp(32px, 4vw, 56px); margin-bottom: 20px; }
-    .about-cta p {
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--grey);
-      font-weight: 300;
-      margin-bottom: 40px;
-    }
+    .about-cta p { font-size: 15px; line-height: 1.75; color: var(--grey); font-weight: 300; margin-bottom: 40px; }
 
     @media (max-width: 900px) {
       .about-hero { padding: 120px 24px 60px; }
@@ -243,10 +83,10 @@
 <nav>
   <div class="logo">PHYSI<span>Q</span></div>
   <ul>
-    <li><a href="index.html">Build</a></li>
+    <li><a href="index.html">Home</a></li>
     <li><a href="how-it-works.html">How It Works</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="login.html" class="nav-cta">Get Your Plan</a></li>
+    <li><a href="login.html" class="nav-cta">Get Started</a></li>
   </ul>
 </nav>
 
@@ -261,7 +101,7 @@
       was like <em>you.</em>
     </h1>
     <p>
-      No corporate team I wanted to build a tool I would use.
+      No corporate team. I wanted to build a tool I would actually use — so I did.
     </p>
   </div>
 </section>
@@ -306,9 +146,9 @@
     <div class="section-tag">Why PHYSIQ exists</div>
     <h3>Because generic programs <em>don't work.</em></h3>
     <p>
-      Most fitness apps and programs are built for the average person. But there is no average person.
-      You have your own schedule, your own body, your own weak points, and your own vision for what
-      you want to look like.
+      Most fitness apps are built for the average person. But there is no average person.
+      You have your own schedule, your own body, your own weak points, and your own vision for
+      what you want to look like.
     </p>
     <p>
       <strong>PHYSIQ exists to give everyone their own program.</strong> Not a template with your
@@ -317,23 +157,22 @@
   </div>
 
   <div class="story-block reveal">
-    <div class="section-tag">What's coming</div>
-    <h3>This is just <em>the beginning.</em></h3>
+    <div class="section-tag">What's built</div>
+    <h3>More than a program <em>generator.</em></h3>
     <p>
-      The program generator is only the first piece. A physique analyzer, nutrition calculator,
-      progressive overload tracker, and full coaching tools are all in development. The goal is
-      to build the most useful fitness platform available — built by someone in the same position
-      as the people using it.
+      PHYSIQ now includes a full AI Physique Analyzer that scores your physique across four pillars
+      — Development, Proportion, Conditioning, and Symmetry — with an interactive muscle map showing
+      exactly what to work on. Upload a photo and get a breakdown in seconds.
     </p>
     <p>
-      If you want early access to new features as they drop, leave your email below.
+      On top of that: a Macro Calculator to dial in your nutrition, an AI Meal Planner, a Phase
+      Nutrition planner, and a Progress Tracker that compares your photos over time.
+      <strong>Everything in one place, all personalized to you.</strong>
     </p>
-    <div class="email-row">
-      <input type="email" placeholder="your@email.com">
-      <button class="btn-primary" onclick="alert('Thanks — you\'ll be first to know!')">
-        Stay in the Loop
-      </button>
-    </div>
+    <p>
+      The goal is to keep building — a mobile app is next. But the tools that exist right now
+      are already more than anything I had when I started. That's the point.
+    </p>
   </div>
 
 </section>
@@ -349,26 +188,17 @@
       <div class="value-card reveal">
         <span class="value-number">01</span>
         <div class="value-title">Specificity over templates</div>
-        <p class="value-desc">
-          A program that doesn't account for your schedule, equipment, and body type isn't a
-          program — it's a guess. Everything here is built around you specifically.
-        </p>
+        <p class="value-desc">A program that doesn't account for your schedule, equipment, and body type isn't a program — it's a guess. Everything here is built around you specifically.</p>
       </div>
       <div class="value-card reveal">
         <span class="value-number">02</span>
         <div class="value-title">Aesthetics with purpose</div>
-        <p class="value-desc">
-          Lifting to look good isn't shallow — it's a legitimate goal that requires its own
-          approach. We build programs around proportion, shape, and long-term development.
-        </p>
+        <p class="value-desc">Lifting to look good isn't shallow — it's a legitimate goal that requires its own approach. We build programs around proportion, shape, and long-term development.</p>
       </div>
       <div class="value-card reveal">
         <span class="value-number">03</span>
         <div class="value-title">No bro-science</div>
-        <p class="value-desc">
-          Every recommendation is grounded in what actually works — progressive overload,
-          compound-first programming, and real recovery. No gimmicks, no shortcuts.
-        </p>
+        <p class="value-desc">Every recommendation is grounded in what actually works — progressive overload, compound-first programming, and real recovery. No gimmicks, no shortcuts.</p>
       </div>
     </div>
   </div>
@@ -378,13 +208,17 @@
 <section class="about-cta reveal">
   <div class="section-tag">Ready?</div>
   <h2>Get your <em>personalized</em> program.</h2>
-  <p>Takes 90 seconds. Built around you.</p>
-  <a href="login.html" class="btn-primary">Get Your Plan</a>
+  <p>Create a free account and get started in under 2 minutes.</p>
+  <a href="login.html" class="btn-primary">Get Started</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">PHYSI<span>Q</span></div>
+  <div class="footer-social">
+    <a href="https://www.tiktok.com/@physiq_site" target="_blank" class="social-link">TikTok</a>
+    <a href="https://www.instagram.com/physiq.site" target="_blank" class="social-link">Instagram</a>
+  </div>
   <div class="footer-copy">© 2025 PHYSIQ — Built for the next generation of lifters</div>
 </footer>
 
