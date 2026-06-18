@@ -731,7 +731,7 @@ Return ONLY this exact JSON, no markdown, no extra text:
     }
   }
 
-  function renderResults(data) {
+  async function renderResults(data) {
     document.getElementById('analyzingOverlay').classList.remove('active');
     document.getElementById('resultsPanel').classList.add('active');
 
