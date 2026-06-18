@@ -232,6 +232,37 @@
 
     /* ACTION PLAN */
     .action-plan-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); border-top: none; margin-bottom: 24px; }
+
+    /* SCORE HISTORY */
+    .score-history-section {
+      background: #141414; border: 1px solid rgba(255,255,255,0.04);
+      border-top: none; padding: 40px; margin-bottom: 1px;
+    }
+    .score-history-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
+    .score-history-eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 8px; }
+    .score-history-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--white); }
+    .score-history-title em { color: var(--gold); font-style: italic; }
+    .score-improvement { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; }
+    .score-improvement.positive { color: var(--gold); }
+    .score-improvement.neutral { color: rgba(255,255,255,0.3); }
+    .score-improvement-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+    .score-chart-wrap { width: 100%; overflow: hidden; }
+    .score-chart { width: 100%; display: block; }
+    .reanalyze-prompt {
+      margin-top: 24px; padding: 20px 24px;
+      background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.1);
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .reanalyze-text { font-size: 13px; color: rgba(255,255,255,0.3); font-weight: 300; }
+    .reanalyze-text strong { color: var(--white); display: block; margin-bottom: 4px; font-weight: 500; }
+    .reanalyze-btn {
+      background: none; border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); padding: 10px 20px; font-family: 'DM Sans', sans-serif;
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .reanalyze-btn:hover { background: rgba(201,168,76,0.08); }
+    .score-history-empty { text-align: center; padding: 40px; color: rgba(255,255,255,0.15); font-size: 13px; font-weight: 300; }
     .action-card { background: #0a0a0a; padding: 36px; }
     .action-card-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
     .action-card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--white); margin-bottom: 16px; }
@@ -474,6 +505,30 @@
       </div>
     </div>
 
+    <!-- SCORE HISTORY -->
+    <div class="score-history-section" id="scoreHistorySection" style="display:none;">
+      <div class="score-history-header">
+        <div>
+          <div class="score-history-eyebrow">Your Progress</div>
+          <div class="score-history-title">Score <em>Over Time</em></div>
+        </div>
+        <div style="text-align:right;">
+          <div class="score-improvement" id="scoreImprovement">—</div>
+          <div class="score-improvement-label" id="scoreImprovementLabel">points gained</div>
+        </div>
+      </div>
+      <div class="score-chart-wrap">
+        <svg class="score-chart" id="scoreChart" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <div class="reanalyze-prompt" id="reanalyzePrompt">
+        <div class="reanalyze-text">
+          <strong id="reanalyzeTitle">Track your transformation</strong>
+          <span id="reanalyzeSubtext">Re-analyze your physique in 8 weeks to see how much you've improved.</span>
+        </div>
+        <button class="reanalyze-btn" onclick="resetAnalyzer()">New Analysis ↑</button>
+      </div>
+    </div>
+
     <!-- ACTION PLAN -->
     <div class="action-plan-section">
       <div class="action-card">
@@ -514,6 +569,7 @@
   const db = createClient(SUPABASE_URL, SUPABASE_ANON);
 
   let userTier = 'free';
+  let currentUser = null;
   let selectedGoal = 'Aesthetic';
   let selectedExp  = 'Beginner';
   let selectedFocus = 'Full Body';
@@ -526,6 +582,7 @@
     const session = data?.session;
     if (!session) { window.location.href = 'login.html'; return; }
     const meta = session.user.user_metadata || {};
+    currentUser = session.user;
     userTier = meta.tier || 'free';
     const hasAccess = userTier === 'base' || userTier === 'pro';
     if (!hasAccess) { document.getElementById('lockedOverlay').classList.add('active'); }
@@ -727,6 +784,13 @@ Return ONLY this exact JSON, no markdown, no extra text:
     document.getElementById('actionPlanText').textContent = data.actionPlan || '';
     document.getElementById('nutritionTipText').textContent = data.nutritionTip || '';
     buildMuscleList(data.muscles || []);
+
+    // Save score and show history
+    if (data.overallScore) {
+      await saveAnalysisScore(data.overallScore, data.potentialScore, data.tier, data.bodyFat);
+      await loadScoreHistory();
+    }
+
     document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -789,6 +853,7 @@ Return ONLY this exact JSON, no markdown, no extra text:
     document.querySelector('.photo-tips').style.display = 'block';
     document.getElementById('detailEmpty').style.display = 'block';
     document.getElementById('detailContent').classList.remove('active');
+    document.getElementById('scoreHistorySection').style.display = 'none';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -918,6 +983,125 @@ Return ONLY this exact JSON, no markdown, no extra text:
 
   function injectBodyMap(focus) {
     document.getElementById('svgContainer').innerHTML = SVG_MAP[focus] || SVG_FULL;
+  }
+
+  // ============================================
+  // SCORE HISTORY
+  // ============================================
+  async function saveAnalysisScore(score, potential, tier, bodyFat) {
+    try {
+      await db.from('analysis_scores').insert({
+        user_id: currentUser.id,
+        score: parseInt(score),
+        potential: parseInt(potential) || null,
+        tier: tier || null,
+        body_fat: bodyFat || null
+      });
+    } catch(err) { console.error('Score save failed:', err); }
+  }
+
+  async function loadScoreHistory() {
+    try {
+      const { data: scores, error } = await db
+        .from('analysis_scores')
+        .select('*')
+        .order('created_at', { ascending: true });
+
+      if (error || !scores || scores.length === 0) return;
+
+      document.getElementById('scoreHistorySection').style.display = 'block';
+
+      // Improvement stat
+      const first = scores[0].score;
+      const latest = scores[scores.length - 1].score;
+      const diff = latest - first;
+      const impEl = document.getElementById('scoreImprovement');
+
+      if (scores.length === 1) {
+        impEl.textContent = scores[0].score;
+        impEl.className = 'score-improvement neutral';
+        document.getElementById('scoreImprovementLabel').textContent = 'current score';
+      } else {
+        impEl.textContent = (diff >= 0 ? '+' : '') + diff;
+        impEl.className = `score-improvement ${diff >= 0 ? 'positive' : 'neutral'}`;
+        document.getElementById('scoreImprovementLabel').textContent = 'points since first scan';
+      }
+
+      // Reanalyze prompt
+      const lastDate = new Date(scores[scores.length - 1].created_at);
+      const daysSince = Math.floor((Date.now() - lastDate) / 86400000);
+      const weeksUntil = Math.max(0, 8 - Math.floor(daysSince / 7));
+
+      if (scores.length === 1) {
+        document.getElementById('reanalyzeTitle').textContent = 'You\'re just getting started';
+        document.getElementById('reanalyzeSubtext').textContent = 'Re-analyze in 8 weeks to see how much your physique has changed. Progress takes time — trust the process.';
+      } else if (weeksUntil > 0) {
+        document.getElementById('reanalyzeTitle').textContent = `Re-analyze in ~${weeksUntil} week${weeksUntil !== 1 ? 's' : ''}`;
+        document.getElementById('reanalyzeSubtext').textContent = `Your last analysis was ${daysSince} days ago. Give your training time to show results before scanning again.`;
+      } else {
+        document.getElementById('reanalyzeTitle').textContent = 'You\'re ready for a new scan';
+        document.getElementById('reanalyzeSubtext').textContent = `It's been ${daysSince} days since your last analysis. Upload a new photo to see how far you've come.`;
+      }
+
+      // Draw SVG chart
+      if (scores.length >= 2) {
+        drawScoreChart(scores);
+      } else {
+        document.getElementById('scoreChart').style.display = 'none';
+      }
+
+    } catch(err) { console.error('Score history load failed:', err); }
+  }
+
+  function drawScoreChart(scores) {
+    const svg = document.getElementById('scoreChart');
+    const W = 700, H = 160, padX = 40, padY = 20;
+    const chartW = W - padX * 2;
+    const chartH = H - padY * 2;
+
+    const minScore = Math.max(0, Math.min(...scores.map(s => s.score)) - 10);
+    const maxScore = Math.min(100, Math.max(...scores.map(s => s.score)) + 10);
+    const range = maxScore - minScore || 1;
+
+    const pts = scores.map((s, i) => {
+      const x = padX + (i / (scores.length - 1)) * chartW;
+      const y = padY + chartH - ((s.score - minScore) / range) * chartH;
+      return { x, y, score: s.score, date: new Date(s.created_at) };
+    });
+
+    const pathD = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+    const areaD = `${pathD} L ${pts[pts.length-1].x} ${padY + chartH} L ${pts[0].x} ${padY + chartH} Z`;
+
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(201,168,76,0.25)"/>
+          <stop offset="100%" stop-color="rgba(201,168,76,0)"/>
+        </linearGradient>
+      </defs>
+      <!-- Grid lines -->
+      ${[0, 25, 50, 75, 100].map(v => {
+        const y = padY + chartH - ((Math.min(v, maxScore) - minScore) / range) * chartH;
+        return v >= minScore && v <= maxScore
+          ? `<line x1="${padX}" y1="${y}" x2="${W - padX}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+             <text x="${padX - 8}" y="${y + 4}" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.15)" font-family="DM Sans">${v}</text>`
+          : '';
+      }).join('')}
+      <!-- Area fill -->
+      <path d="${areaD}" fill="url(#chartGrad)"/>
+      <!-- Line -->
+      <path d="${pathD}" fill="none" stroke="rgba(201,168,76,0.7)" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Dots + labels -->
+      ${pts.map((p, i) => {
+        const isLast = i === pts.length - 1;
+        const dateStr = p.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        return `
+          <circle cx="${p.x}" cy="${p.y}" r="${isLast ? 6 : 4}" fill="${isLast ? '#C9A84C' : 'rgba(201,168,76,0.5)'}" stroke="#0F0F0F" stroke-width="2"/>
+          <text x="${p.x}" y="${p.y - 12}" text-anchor="middle" font-size="10" fill="${isLast ? '#C9A84C' : 'rgba(255,255,255,0.4)'}" font-family="Bebas Neue" letter-spacing="1">${p.score}</text>
+          <text x="${p.x}" y="${H - 4}" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.2)" font-family="DM Sans">${dateStr}</text>
+        `;
+      }).join('')}
+    `;
   }
 
   initPage();
