@@ -361,16 +361,18 @@
           <input type="password" id="signupPassword" placeholder="Min. 8 characters">
         </div>
 
+        <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;cursor:pointer;">
+          <input type="checkbox" id="agreeTerms" style="margin-top:3px;flex-shrink:0;accent-color:var(--gold);">
+          <span style="font-size:11px;color:var(--grey);font-weight:300;line-height:1.6;">
+            I agree to the <a href="terms-of-service.html" style="color:var(--gold);text-decoration:none;" target="_blank">Terms of Service</a> and <a href="privacy-policy.html" style="color:var(--gold);text-decoration:none;" target="_blank">Privacy Policy</a>
+          </span>
+        </label>
+
         <button class="auth-submit" id="signupBtn" onclick="handleSignup()">
           Create Account
         </button>
 
         <div class="auth-message" id="signupMessage"></div>
-
-        <p class="terms-note">
-          By signing up you agree to our Terms of Service and Privacy Policy.
-          Your data is never sold or shared.
-        </p>
       </div>
 
       <!-- LOGIN FORM -->
@@ -474,6 +476,9 @@
     if (password.length < 8) {
       return showMessage('signupMessage', 'Password must be at least 8 characters.', 'error');
     }
+    if (!document.getElementById('agreeTerms').checked) {
+      return showMessage('signupMessage', 'Please agree to the Terms of Service and Privacy Policy.', 'error');
+    }
 
     setLoading('signupBtn', true);
 
@@ -529,5 +534,9 @@
   });
 </script>
 
+<footer style="background:#f5f0e8;border-top:1px solid rgba(0,0,0,0.08);padding:24px 40px;text-align:center;">
+  <a href="privacy-policy.html" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,0.3);text-decoration:none;margin:0 16px;">Privacy Policy</a>
+  <a href="terms-of-service.html" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,0.3);text-decoration:none;margin:0 16px;">Terms of Service</a>
+</footer>
 </body>
 </html>
