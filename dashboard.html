@@ -35,6 +35,67 @@
     .logout-btn { background: none; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 16px; cursor: pointer; transition: all 0.2s; }
     .logout-btn:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
 
+    /* ── STREAK PILL ── */
+    .streak-pill {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 6px 14px;
+      position: relative;
+      cursor: default;
+      transition: border-color 0.2s;
+    }
+    .streak-pill:hover { border-color: rgba(201,168,76,0.45); }
+    .streak-flame { font-size: 14px; line-height: 1; }
+    .streak-count {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .streak-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      font-weight: 400;
+    }
+    .streak-tip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      border: 1px solid rgba(201,168,76,0.2);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      padding: 8px 14px;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+    }
+    .streak-tip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: rgba(201,168,76,0.2);
+    }
+    .streak-pill:hover .streak-tip { display: block; }
+    @keyframes streakPop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    .streak-pop { animation: streakPop 0.5s ease; }
+    /* ── END STREAK PILL ── */
+
     .dash-main { padding: 100px 40px 60px; max-width: 1300px; margin: 0 auto; }
 
     .dash-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: flex-end; }
@@ -143,6 +204,15 @@
   <div class="dash-nav-right">
     <a href="dashboard.html">Dashboard</a>
     <a href="program.html">Programs</a>
+
+    <!-- STREAK PILL -->
+    <div class="streak-pill" id="streakPill">
+      <span class="streak-flame">🔥</span>
+      <span class="streak-count">0</span>
+      <span class="streak-label">Day Streak</span>
+      <span class="streak-tip">Loading...</span>
+    </div>
+
     <div class="user-pill">
       <div class="user-avatar" id="userAvatar">?</div>
       <span id="userName">Loading...</span>
@@ -186,17 +256,16 @@
       <span class="stat-card-value" id="statPrograms">0</span>
       <span class="stat-card-sub">Total all time</span>
     </div>
+    <!-- STREAK STAT CARD — replaces "Member Since" -->
     <div class="stat-card">
-      <span class="stat-card-label">Member Since</span>
-      <span class="stat-card-value" id="statSince">—</span>
-      <span class="stat-card-sub">Keep going</span>
+      <span class="stat-card-label">Day Streak</span>
+      <span class="stat-card-value" id="statStreak">—</span>
+      <span class="stat-card-sub" id="statStreakSub">Start your streak today</span>
     </div>
   </div>
 
   <div class="section-label">Your Tools</div>
   <div class="feature-grid" id="featureGrid">
-
-    <!-- All cards are <a> tags — locked ones have href="#" and pointer-events:none via .locked class -->
 
     <a href="program.html" class="feature-card" id="cardProgram">
       <span class="feature-icon">⚡</span>
@@ -293,6 +362,7 @@
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="streak.js"></script>
 <script>
   const SUPABASE_URL = 'https://ldzsrllsorvjymgldiig.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_xVW1aJXy-YsoKRt2Csq34A_2FYRskd0';
@@ -319,9 +389,6 @@
 
     document.getElementById('statPlan').textContent = tier.toUpperCase();
 
-    const joined = new Date(user.created_at);
-    document.getElementById('statSince').textContent = joined.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-
     const daysLeft = 5 - Math.floor((Date.now() - trialStart) / 86400000);
     const trialActive = daysLeft > 0 && tier === 'free';
 
@@ -331,6 +398,19 @@
     }
 
     unlockFeatures(tier, trialActive);
+
+    // ── STREAK ──
+    const streakData = await window.physiqStreak.update(db, user.id);
+    if (streakData) {
+      const s = streakData.current_streak;
+      document.getElementById('statStreak').textContent = s;
+      document.getElementById('statStreakSub').textContent =
+        s === 1 ? 'Day 1 — start strong' :
+        s < 7   ? `${s} days — building habit` :
+        s < 30  ? `${s} days — locked in 🔒` :
+                  `${s} days — elite 👑`;
+    }
+    // ── END STREAK ──
 
     document.getElementById('dashLoading').style.display = 'none';
     document.getElementById('dashMain').style.display = 'block';
@@ -393,7 +473,7 @@
         userId: session.user.id,
         email: session.user.email,
         successUrl: 'https://physiq.site/dashboard.html',
-cancelUrl: 'https://physiq.site/dashboard.html'
+        cancelUrl: 'https://physiq.site/dashboard.html'
       })
     });
 
